@@ -1,12 +1,25 @@
 ---
-
 import Layout from '../layouts/Layout.astro';
+import Card from '../components/card.astro';
+import ProductModal from '../components/ProductModal.astro';
+import { supabase } from '../lib/supabase';
 
+const { data: productos, error } = await supabase.from('Producto').select('*');
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
-
+if (error) console.error('Error al cargar productos:', error.message);
 ---
 
-<Layout>
+<Layout title="PaulasWeb">
+  <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 p-4 md:p-8 max-w-300 mx-auto">
+    {(productos ?? []).map((producto) => (
+      <Card
+        title={producto.nombre}
+        price={producto.precio ? `€${producto.precio}` : undefined}
+        image={producto.imagen}
+        imageAlt={producto.nombre}
+        desc={producto.desc ?? ''}
+      />
+    ))}
+  </section>
+  <ProductModal />
 </Layout>

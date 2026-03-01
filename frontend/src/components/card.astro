@@ -1,194 +1,59 @@
 ---
 interface Props {
   title: string;
-  description?: string;
+  price?: number | string;
   image?: string;
   imageAlt?: string;
-  link?: string;
-  linkText?: string;
-  variant?: 'default' | 'outlined' | 'elevated';
+  desc?: string;
 }
 
 const {
   title,
-  description,
+  price,
   image,
   imageAlt = '',
-  link,
-  linkText = 'Ver más',
-  variant = 'default'
+  desc = '',
 } = Astro.props;
 ---
 
-<div class={`card card--${variant}`}>
+<article
+  class="group flex flex-col w-full cursor-pointer"
+  data-title={title}
+  data-price={price ?? ''}
+  data-image={image ?? ''}
+  data-image-alt={imageAlt}
+  data-desc={desc}
+  role="button"
+  tabindex="0"
+>
   {image && (
-    <div class="card__image">
-      <img src={image} alt={imageAlt} loading="lazy" />
+    <div class="w-full aspect-3/4 overflow-hidden bg-[#f0f0f0]">
+      <img src={image} alt={imageAlt} loading="lazy" class="w-full h-full object-cover transition-transform duration-500 ease-in-out group-hover:scale-105" />
     </div>
   )}
-  
-  <div class="card__content">
-    <h3 class="card__title">{title}</h3>
-    
-    {description && (
-      <p class="card__description">{description}</p>
-    )}
-    
-    {link && (
-      <a href={link} class="card__link">
-        {linkText}
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M5 12h14M12 5l7 7-7 7"/>
-        </svg>
-      </a>
-    )}
-    
-    <slot />
+  <div class="pt-3 flex flex-col gap-1">
+    <p class="m-0 text-xs font-bold uppercase tracking-wider text-neutral-900">{title}</p>
+    {price && <p class="m-0 text-sm text-neutral-900 font-normal">{price}</p>}
   </div>
-</div>
+</article>
 
-<style>
-  .card {
-    border: 10px solid pink; 
-    border-radius: 1rem;    
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    height: 100%;
-    max-width: 320px;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    background: #ffffff;
-    position: relative;
-  }
-
-  .card--default {
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
-  }
-
-  .card--outlined {
-    border: 2px solid #e5e5e5;
-  }
-
-  .card--elevated {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  }
-
-  .card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
-    border-color: #e0e0e0;
-  }
-
-  .card__image {
-    width: 100%;
-    height: 320px;
-    overflow: hidden;
-    background: #fafafa;
-    position: relative;
-  }
-
-  .card__image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-  }
-
-  .card:hover .card__image img {
-    transform: scale(1.08);
-  }
-
-  .card__content {
-    padding: 1.25rem;
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-    background: #ffffff;
-  }
-
-  .card__title {
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: #111827;
-    margin: 0;
-    line-height: 1.5;
-    letter-spacing: -0.01em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-  }
-
-  .card__description {
-    color: #6b7280;
-    line-height: 1.5;
-    margin: 0;
-    flex: 1;
-    font-size: 0.875rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-  }
-
-  .card__link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-    color: #ffffff;
-    background: #111827;
-    text-decoration: none;
-    font-weight: 500;
-    font-size: 0.875rem;
-    transition: all 0.3s ease;
-    margin-top: 0.75rem;
-    padding: 0.75rem 1.25rem;
-    border-radius: 8px;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .card__link:hover {
-    background: #1f2937;
-    transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-  }
-
-  .card__link svg {
-    transition: transform 0.3s ease;
-    width: 14px;
-    height: 14px;
-  }
-
-  .card__link:hover svg {
-    transform: translateX(4px);
-  }
-
-  @media (max-width: 640px) {
-    .card {
-      max-width: 100%;
-    }
-
-    .card__image {
-      height: 280px;
-    }
-
-    .card__content {
-      padding: 1rem;
-    }
-
-    .card__title {
-      font-size: 1rem;
-    }
-
-    .card__link {
-      padding: 0.65rem 1rem;
-      font-size: 0.8125rem;
-    }
-  }
-</style>
+<script>
+  document.querySelectorAll('article[data-title]').forEach((card) => {
+    const open = () => {
+      card.dispatchEvent(new CustomEvent('open-product-modal', {
+        bubbles: true,
+        detail: {
+          title: card.getAttribute('data-title'),
+          price: card.getAttribute('data-price'),
+          image: card.getAttribute('data-image'),
+          imageAlt: card.getAttribute('data-image-alt'),
+          desc: card.getAttribute('data-desc'),
+        }
+      }));
+    };
+    card.addEventListener('click', open);
+    card.addEventListener('keydown', (e) => {
+      if ((e as KeyboardEvent).key === 'Enter') open();
+    });
+  });
+</script>
