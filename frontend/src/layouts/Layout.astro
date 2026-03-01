@@ -1,0 +1,31 @@
+---
+import "../style/globals.css";
+import Navbar from "../components/navbar.astro";
+import { db, productos } from "astro:db";
+import Card from "../components/card.astro";
+const select = await db.select().from(productos);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<title>PaulasWeb</title>
+	</head>
+	<body>
+		<Navbar />
+		<slot />
+		<div id="perfiles" style="display: flex; justify-content:space-between; ">
+			{select.map((perfil) => (
+			<Card 
+				title="foto uno" 
+				image={perfil.urlImagen}
+				imageAlt="Producto"
+			/>
+			))}
+		</div>
+	</body>
+</html>
