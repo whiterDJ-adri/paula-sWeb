@@ -7,4 +7,15 @@
 	--color-danger: #dc3545;
 	--color-success: #28a745;
 	--color-warning: #fd7e14;
+
+	--animate-scroll-banner: scroll-banner 20s linear infinite;
+
+	@keyframes scroll-banner {
+		0% {
+			transform: translateX(0);
+		}
+		100% {
+			transform: translateX(-25%);
+		}
+	}
 }

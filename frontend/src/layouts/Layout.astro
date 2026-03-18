@@ -7,6 +7,8 @@ interface Props {
 }
 
 const { title = 'PaulasWeb' } = Astro.props;
+
+const bannerText = '✨ Bienvenida a PaulasWeb &nbsp;•&nbsp; Descubre nuestros productos &nbsp;•&nbsp; Ofertas especiales cada semana &nbsp;•&nbsp; ¡No te lo pierdas! &nbsp;•&nbsp;';
 ---
 
 <!doctype html>
@@ -19,11 +21,24 @@ const { title = 'PaulasWeb' } = Astro.props;
   </head>
   <body>
     <Navbar />
+
+  
+
     <!-- Hero: ocupa todo el ancho y alto de la pantalla -->
     <div class="w-full h-50 bg-[url('/fondo.webp')] bg-cover bg-center bg-no-repeat"></div>
+      <div class="w-full overflow-hidden bg-[#1a1a2e] text-[#e0b0ff] text-sm font-medium tracking-wide py-2 whitespace-nowrap">
+        <div class="inline-flex animate-scroll-banner">
+          {Array.from({ length: 4 }).map(() => (
+            <span class="inline-block pr-8" set:html={bannerText} />
+          ))}
+        </div>
+      </div>
+
     <main>
       <slot />
     </main>
   </body>
 </html>
+
+
 
