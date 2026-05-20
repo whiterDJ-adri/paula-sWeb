@@ -1,0 +1,51 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProductGrid from "../components/ProductGrid.astro";
+import ProductModal from "../components/ProductModal.astro";
+import ShopCategoryNav from "../components/ShopCategoryNav.astro";
+
+interface Product {
+  nombre?: string;
+  precio?: number | string;
+  imagen?: string;
+  desc?: string;
+  categoria?: string;
+  category?: string;
+}
+
+const categories = [
+  { id: "anillos", title: "Anillos" },
+  { id: "brazaletes", title: "Brazaletes" },
+  { id: "collares", title: "Collares" },
+  { id: "pendientes", title: "Pendientes" },
+];
+
+const products: Product[] = [];
+const normalize = (value = "") => value.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
+const byCategory = (title: string) => products.filter((product) => {
+  const category = normalize(product.categoria ?? product.category ?? "");
+  return category === normalize(title);
+});
+---
+
+<Layout title="Tienda | PATO Studio" description="Tienda de PATO Studio con anillos, brazaletes, collares y pendientes.">
+  <ShopCategoryNav />
+  <div class="shop-page" aria-label="Tienda PATO Studio">
+    {categories.map((category) => (
+      <ProductGrid
+        id={category.id}
+        title={category.title}
+        products={byCategory(category.title)}
+        emptyMessage={`Piezas de ${category.title.toLowerCase()} pendientes de integrar.`}
+        minItems={12}
+      />
+    ))}
+  </div>
+  <ProductModal />
+</Layout>
+
+<style>
+  .shop-page {
+    padding-bottom: 8rem;
+  }
+</style>

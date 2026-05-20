@@ -1,0 +1,127 @@
+---
+interface GalleryItem {
+  alt: string;
+  label?: string;
+}
+
+interface Props {
+  title?: string;
+  subtitle?: string;
+  items?: GalleryItem[];
+  variant?: "feature" | "archive";
+}
+
+const {
+  title = "THE MOLTING",
+  subtitle = "DROP 1",
+  variant = "feature",
+  items = [
+    { alt: "Editorial PATO Studio 1" },
+    { alt: "Editorial PATO Studio 2" },
+    { alt: "Editorial PATO Studio 3" },
+  ],
+} = Astro.props;
+
+const titleId = `${title.replaceAll(" ", "-").toLowerCase()}-${variant}-title`;
+---
+
+<section class:list={["gallery", `gallery--${variant}`]} aria-labelledby={titleId}>
+  <div class="heading">
+    <h2 id={titleId}>{title}</h2>
+    {subtitle && <p>{subtitle}</p>}
+  </div>
+
+  <div class="grid">
+    {items.map((item) => (
+      <figure>
+        <div class="image-slot" role="img" aria-label={`${item.alt} pendiente de integrar`}></div>
+        {item.label && <figcaption>{item.label}</figcaption>}
+      </figure>
+    ))}
+  </div>
+</section>
+
+<style>
+  .gallery {
+    max-width: var(--container);
+    margin-inline: auto;
+    padding: 0 clamp(1rem, 2.6vw, 1.9375rem);
+  }
+
+  .heading {
+    display: grid;
+    gap: 0;
+  }
+
+  h2,
+  p {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-weight: 700;
+  }
+
+  h2 {
+    color: var(--color-brand);
+    font-size: clamp(2.75rem, 5vw, 4.375rem);
+    line-height: 1;
+  }
+
+  .gallery--archive h2 {
+    color: var(--color-ink);
+    font-size: clamp(2rem, 3vw, 2.5rem);
+  }
+
+  p {
+    color: var(--color-ink);
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    padding: 0.625rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.75rem;
+    margin-top: 0;
+  }
+
+  figure {
+    margin: 0;
+    overflow: hidden;
+    background: var(--color-cream);
+  }
+
+  .image-slot {
+    display: block;
+    width: 100%;
+    aspect-ratio: 467 / 674;
+    background:
+      linear-gradient(135deg, transparent calc(50% - 1px), rgb(0 0 0 / 18%) 50%, transparent calc(50% + 1px)),
+      linear-gradient(45deg, transparent calc(50% - 1px), rgb(0 0 0 / 18%) 50%, transparent calc(50% + 1px)),
+      var(--color-cream);
+    transition: transform 600ms ease;
+  }
+
+  figure:hover .image-slot {
+    transform: scale(1.035);
+  }
+
+  figcaption {
+    padding-top: 0.5rem;
+    font-family: var(--font-mono);
+    color: var(--color-brand);
+  }
+
+  @media (max-width: 47.99rem) {
+    .grid {
+      display: flex;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding-bottom: 0.75rem;
+    }
+
+    figure {
+      flex: 0 0 78vw;
+      scroll-snap-align: start;
+    }
+  }
+</style>

@@ -1,0 +1,40 @@
+:root {
+  --color-canvas: #ffffff;
+  --color-ink: #000000;
+  --color-muted: rgb(0 0 0 / 60%);
+  --color-muted-soft: rgb(0 0 0 / 20%);
+  --color-brand: #e6557e;
+  --color-cream: #f7ffe4;
+  --color-card: rgb(255 255 255 / 60%);
+  --color-line: #000000;
+
+  --font-heading: "Sen", system-ui, sans-serif;
+  --font-body: "Sen", system-ui, sans-serif;
+  --font-mono: "Ubuntu Sans Mono", "Ubuntu Mono", monospace;
+  --font-logo: "Caveat", cursive;
+
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 2.5rem;
+  --space-6: 3rem;
+  --space-8: 4rem;
+  --space-10: 5rem;
+  --space-12: 6rem;
+
+  --container: 86.375rem;
+  --header-height: 7.8125rem;
+  --radius-card: 0.125rem;
+  --transition-ui: 180ms ease;
+  --shadow-focus: 0 0 0 3px rgb(230 85 126 / 25%);
+}
+
+@media (max-width: 47.99rem) {
+  :root {
+    --header-height: auto;
+    --space-8: 3rem;
+    --space-10: 4rem;
+    --space-12: 4.5rem;
+  }
+}

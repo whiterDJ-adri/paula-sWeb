@@ -1,0 +1,58 @@
+---
+interface Props {
+  title?: string;
+  body?: string;
+}
+
+const {
+  title = "Diseñadas para llevar\nHechas para quedarse",
+  body = "En Pato Studio diseño piezas desde mi propio universo. Colecciones pequeñas que salen cuando tienen sentido. Cada drop reúne piezas con una misma energía, pensadas como conjunto, no como objetos aislados.\n\nAlgunas pueden ser más limitadas que otras, pero todas forman parte de un proceso creativo concreto.\nNo sigo un ritmo fijo ni repito lanzamientos. Lo que sale en cada colección es lo que hay en ese momento. De forma puntual, también abro propuestas personalizadas, siempre dentro de mi lenguaje y proceso creativo.",
+} = Astro.props;
+---
+
+<section id="nosotros" class="story" aria-labelledby="story-title">
+  <h2 id="story-title">{title}</h2>
+  <p>{body}</p>
+</section>
+
+<style>
+  .story {
+    display: grid;
+    gap: 0.5rem;
+    max-width: 70.5rem;
+    margin: 6.5rem auto 6.25rem;
+    padding-inline: clamp(1rem, 3.8vw, 3.4375rem);
+  }
+
+  h2,
+  p {
+    margin: 0;
+    font-family: var(--font-mono);
+    font-weight: 700;
+    white-space: pre-line;
+  }
+
+  h2 {
+    color: var(--color-ink);
+    font-size: clamp(1.75rem, 2.3vw, 2rem);
+    line-height: 1.25;
+  }
+
+  p {
+    max-width: 58.625rem;
+    padding-inline: 1rem;
+    color: #474747;
+    font-size: clamp(1rem, 1.4vw, 1.25rem);
+    line-height: 1.2;
+  }
+
+  @media (max-width: 47.99rem) {
+    .story {
+      margin-block: 4rem;
+    }
+
+    p {
+      padding-inline: 0;
+    }
+  }
+</style>

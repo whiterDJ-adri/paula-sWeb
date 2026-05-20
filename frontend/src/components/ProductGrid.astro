@@ -1,0 +1,98 @@
+---
+import ProductCard from "./ProductCard.astro";
+
+interface Product {
+  nombre?: string;
+  precio?: number | string;
+  imagen?: string;
+  desc?: string;
+  categoria?: string;
+  category?: string;
+}
+
+interface Props {
+  title?: string;
+  id?: string;
+  products?: Product[];
+  emptyMessage?: string;
+  minItems?: number;
+}
+
+const {
+  title = "Anillos",
+  id = title.toLowerCase(),
+  products = [],
+  emptyMessage = "No hay productos disponibles ahora mismo.",
+  minItems = 12,
+} = Astro.props;
+
+const items = products.length > 0
+  ? products
+  : Array.from({ length: minItems }, (_, index) => ({
+      nombre: `Producto ${index + 1}`,
+      desc: emptyMessage,
+    }));
+---
+
+<section id={id} class="product-section" aria-labelledby={`${id}-title`}>
+  <h2 id={`${id}-title`}>{title}</h2>
+
+  <div class="grid">
+    {items.map((producto, index) => (
+      <ProductCard
+        title={producto.nombre ?? "Producto PATO"}
+        price={producto.precio ? `€${producto.precio}` : undefined}
+        image={producto.imagen}
+        imageAlt={producto.nombre ?? "Producto PATO"}
+        desc={producto.desc ?? ""}
+        placeholder={products.length === 0}
+      />
+    ))}
+  </div>
+</section>
+
+<style>
+  .product-section {
+    max-width: 82.25rem;
+    margin-inline: auto;
+    padding: 4.3125rem 0 0;
+    scroll-margin-top: 11rem;
+  }
+
+  h2 {
+    margin: 0 0 1.875rem 0.4375rem;
+    color: var(--color-ink);
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 4vw, 3rem);
+    line-height: 1.1;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 1.4375rem 0.75rem;
+  }
+
+  @media (max-width: 64rem) {
+    .grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .product-section {
+      padding-inline: 1rem;
+    }
+  }
+
+  @media (max-width: 47.99rem) {
+    .grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+  }
+
+  @media (max-width: 28rem) {
+    .grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

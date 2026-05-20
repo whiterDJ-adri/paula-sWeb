@@ -1,0 +1,141 @@
+---
+interface NavLink {
+  href: string;
+  label: string;
+}
+
+interface Props {
+  links?: NavLink[];
+}
+
+const {
+  links = [
+    { href: "/", label: "Home" },
+    { href: "/tienda", label: "Tienda" },
+    { href: "/pato-especiales", label: "PATO especiales" },
+    { href: "/contacto", label: "Contacto" },
+  ],
+} = Astro.props;
+
+const normalizePath = (href: string) => href.split("#")[0];
+const isActive = (href: string) => {
+  const path = normalizePath(href);
+  return path === "/" ? Astro.url.pathname === "/" : Astro.url.pathname.startsWith(path);
+};
+---
+
+<header class="site-header">
+  <a class="brand" href="/" aria-label="PATO, ir al inicio">
+    <span>PA</span>
+    <span>TO</span>
+  </a>
+
+  <nav class="nav" aria-label="Navegación principal">
+    <ul>
+      {links.map((link) => (
+        <li>
+          <a href={link.href} aria-current={isActive(link.href) ? "page" : undefined}>
+            {link.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    display: flex;
+    min-height: var(--header-height);
+    align-items: center;
+    gap: clamp(2rem, 6vw, 5.25rem);
+    border-bottom: 1px solid var(--color-brand);
+    background: rgb(255 255 255 / 92%);
+    padding: 0.625rem clamp(1.25rem, 4.5vw, 4rem) 0;
+    backdrop-filter: blur(14px);
+  }
+
+  .brand {
+    display: grid;
+    width: 7.625rem;
+    min-width: 5.5rem;
+    color: var(--color-ink);
+    font-family: var(--font-logo);
+    font-size: clamp(3.5rem, 6vw, 4.5rem);
+    line-height: 0.78;
+    text-decoration: none;
+  }
+
+  .brand span:last-child {
+    padding-left: 2.35rem;
+  }
+
+  .nav {
+    flex: 1;
+  }
+
+  .nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: clamp(1rem, 5.8vw, 5.25rem);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .nav a {
+    display: inline-flex;
+    min-height: 2.75rem;
+    align-items: center;
+    color: var(--color-ink);
+    font-family: var(--font-heading);
+    font-size: clamp(1rem, 1.65vw, 1.5rem);
+    text-decoration: none;
+    transition: color var(--transition-ui), transform var(--transition-ui);
+  }
+
+  .nav a:hover,
+  .nav a[aria-current="page"] {
+    color: var(--color-brand);
+  }
+
+  .nav a:focus-visible {
+    border-radius: 999px;
+    outline: none;
+    box-shadow: var(--shadow-focus);
+  }
+
+  @media (max-width: 47.99rem) {
+    .site-header {
+      position: relative;
+      align-items: flex-start;
+      gap: 1rem;
+      padding: 0.75rem 1rem 1rem;
+    }
+
+    .brand {
+      width: 4.75rem;
+      min-width: 4.75rem;
+      font-size: 3rem;
+    }
+
+    .brand span:last-child {
+      padding-left: 1.6rem;
+    }
+
+    .nav ul {
+      justify-content: flex-start;
+      gap: 0.25rem 1rem;
+    }
+
+    .nav a {
+      min-height: 2rem;
+      font-size: 0.95rem;
+    }
+  }
+</style>

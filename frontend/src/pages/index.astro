@@ -1,25 +1,25 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/card.astro';
-import ProductModal from '../components/ProductModal.astro';
-import { supabase } from '../lib/supabase';
-
-const { data: productos, error } = await supabase.from('Producto').select('*');
-
-if (error) console.error('Error al cargar productos:', error.message);
+import Layout from "../layouts/Layout.astro";
+import EditorialGallery from "../components/EditorialGallery.astro";
+import HeroSection from "../components/HeroSection.astro";
+import HomeImageRow from "../components/HomeImageRow.astro";
+import HomeStory from "../components/HomeStory.astro";
 ---
 
-<Layout title="PaulasWeb">
-  <section class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 p-4 md:p-8 max-w-300 mx-auto">
-    {(productos ?? []).map((producto) => (
-      <Card
-        title={producto.nombre}
-        price={producto.precio ? `€${producto.precio}` : undefined}
-        image={producto.imagen}
-        imageAlt={producto.nombre}
-        desc={producto.desc ?? ''}
-      />
-    ))}
-  </section>
-  <ProductModal />
+<Layout title="PATO Studio">
+  <HeroSection />
+  <HomeImageRow />
+  <div class="home-sections">
+    <EditorialGallery />
+    <EditorialGallery title="ANTERIORES" subtitle="" variant="archive" />
+    <EditorialGallery title="ANTERIORES" subtitle="" variant="archive" />
+  </div>
+  <HomeStory />
 </Layout>
+
+<style>
+  .home-sections {
+    display: grid;
+    gap: clamp(4rem, 5vw, 4.5rem);
+  }
+</style>

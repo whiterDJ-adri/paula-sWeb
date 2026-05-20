@@ -1,0 +1,72 @@
+---
+interface CategoryLink {
+  href: string;
+  label: string;
+}
+
+interface Props {
+  links?: CategoryLink[];
+}
+
+const {
+  links = [
+    { href: "#anillos", label: "Anillos" },
+    { href: "#collares", label: "Collares" },
+    { href: "#brazaletes", label: "Brazaletes" },
+    { href: "#pendientes", label: "Pendientes" },
+  ],
+} = Astro.props;
+---
+
+<nav class="shop-nav" aria-label="Categorías de tienda">
+  <ul>
+    {links.map((link) => (
+      <li>
+        <a href={link.href}>{link.label}</a>
+      </li>
+    ))}
+  </ul>
+</nav>
+
+<style>
+  .shop-nav {
+    display: grid;
+    min-height: 3.625rem;
+    place-items: center;
+    border-bottom: 1px solid var(--color-line);
+    background: var(--color-canvas);
+  }
+
+  ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0.75rem 1rem;
+    list-style: none;
+  }
+
+  a {
+    display: inline-flex;
+    min-height: 2rem;
+    align-items: center;
+    color: var(--color-ink);
+    font-family: var(--font-heading);
+    font-size: clamp(1rem, 1.4vw, 1.25rem);
+    font-weight: 700;
+    text-decoration: none;
+    transition: color var(--transition-ui);
+  }
+
+  a:hover,
+  a:focus-visible {
+    color: var(--color-brand);
+  }
+
+  a:focus-visible {
+    border-radius: 999px;
+    outline: none;
+    box-shadow: var(--shadow-focus);
+  }
+</style>

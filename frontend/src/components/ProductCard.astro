@@ -1,0 +1,143 @@
+---
+import { Image } from "astro:assets";
+
+interface Props {
+  title: string;
+  price?: number | string;
+  image?: string;
+  imageAlt?: string;
+  desc?: string;
+  placeholder?: boolean;
+}
+
+const {
+  title,
+  price,
+  image,
+  imageAlt = title,
+  desc = "",
+  placeholder = false,
+} = Astro.props;
+---
+
+<article
+  class="product-card"
+  data-title={title}
+  data-price={price ?? ""}
+  data-image={image ?? ""}
+  data-image-alt={imageAlt}
+  data-desc={desc}
+>
+  <button type="button" aria-label={`Ver detalle de ${title}`}>
+    <span class="image-wrap">
+      {image && !placeholder ? (
+        <Image src={image} alt={imageAlt} width={320} height={327} loading="lazy" decoding="async" inferSize />
+      ) : (
+        <span class="placeholder" aria-hidden="true"></span>
+      )}
+    </span>
+
+    <span class="content">
+      <strong>{title}</strong>
+      <span class="meta">
+        {price && <span>{price}</span>}
+        <span>{placeholder ? "Próximamente" : "Ver detalle"}</span>
+      </span>
+    </span>
+  </button>
+</article>
+
+<script>
+  document.querySelectorAll<HTMLElement>(".product-card").forEach((card) => {
+    const trigger = card.querySelector("button");
+    if (!trigger) return;
+
+    trigger.addEventListener("click", () => {
+      card.dispatchEvent(new CustomEvent("open-product-modal", {
+        bubbles: true,
+        detail: {
+          title: card.dataset.title,
+          price: card.dataset.price,
+          image: card.dataset.image,
+          imageAlt: card.dataset.imageAlt,
+          desc: card.dataset.desc,
+        },
+      }));
+    });
+  });
+</script>
+
+<style>
+  .product-card {
+    min-width: 0;
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-card);
+    background: var(--color-card);
+  }
+
+  button {
+    display: grid;
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: inherit;
+    cursor: pointer;
+    text-align: left;
+  }
+
+  button:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-focus);
+  }
+
+  .image-wrap {
+    display: block;
+    aspect-ratio: 320 / 327;
+    overflow: hidden;
+    background: var(--color-cream);
+  }
+
+  .image-wrap :global(img),
+  .placeholder {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 500ms ease;
+  }
+
+  .placeholder {
+    background:
+      linear-gradient(135deg, transparent calc(50% - 1px), rgb(0 0 0 / 18%) 50%, transparent calc(50% + 1px)),
+      linear-gradient(45deg, transparent calc(50% - 1px), rgb(0 0 0 / 18%) 50%, transparent calc(50% + 1px)),
+      var(--color-cream);
+  }
+
+  .product-card:hover :global(img) {
+    transform: scale(1.04);
+  }
+
+  .content {
+    display: grid;
+    gap: 0.625rem;
+    min-height: 4.5625rem;
+    padding: 0.625rem;
+    font-family: var(--font-heading);
+  }
+
+  strong {
+    color: var(--color-ink);
+    font-size: 1.25rem;
+    line-height: 1.2;
+  }
+
+  .meta {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    color: var(--color-brand);
+    font-family: var(--font-mono);
+    font-size: 1rem;
+  }
+</style>

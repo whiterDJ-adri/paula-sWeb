@@ -1,0 +1,58 @@
+---
+interface Props {
+  eyebrow?: string;
+}
+
+const {
+  eyebrow = "Ideas que nadan fuera de lo obvio.",
+} = Astro.props;
+---
+
+<section class="hero" aria-labelledby="hero-title">
+  <p class="eyebrow">{eyebrow}</p>
+  <div class="media" aria-label="Imagen principal pendiente de integrar">
+    <span></span>
+  </div>
+  <h1 id="hero-title" class="sr-only">PATO Studio</h1>
+</section>
+
+<style>
+  .hero {
+    padding-top: 1.5625rem;
+  }
+
+  .eyebrow {
+    max-width: 33.8125rem;
+    margin: 0 auto 0.6875rem;
+    color: var(--color-muted-soft);
+    font-family: var(--font-heading);
+    font-size: clamp(1.5rem, 2.2vw, 2rem);
+    line-height: 1.2;
+  }
+
+  .media {
+    width: 100%;
+    height: clamp(30rem, 66.8vw, 60.125rem);
+    overflow: hidden;
+    background:
+      linear-gradient(135deg, transparent calc(50% - 1px), rgb(0 0 0 / 18%) 50%, transparent calc(50% + 1px)),
+      linear-gradient(45deg, transparent calc(50% - 1px), rgb(0 0 0 / 18%) 50%, transparent calc(50% + 1px)),
+      var(--color-cream);
+  }
+
+  .media span {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-block: 1px solid rgb(0 0 0 / 8%);
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+</style>

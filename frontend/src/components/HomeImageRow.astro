@@ -1,0 +1,66 @@
+---
+interface Props {
+  count?: number;
+}
+
+const { count = 4 } = Astro.props;
+---
+
+<section class="image-row" aria-label="Fila de imágenes de producto pendiente de integrar">
+  <div class="image-row__track">
+    {Array.from({ length: count }).map((_, index) => (
+      <div class:list={["image-row__slot", index === 0 && "image-row__slot--lead"]}></div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .image-row {
+    overflow: hidden;
+    background: var(--color-canvas);
+  }
+
+  .image-row__track {
+    display: flex;
+    align-items: center;
+    gap: clamp(1.5rem, 3.5vw, 3.125rem);
+    width: min(99.6vw, 89.5625rem);
+    height: clamp(16.5rem, 30.2vw, 27.1875rem);
+    margin: -1.4375rem auto 0;
+  }
+
+  .image-row__slot {
+    flex: 0 0 clamp(12rem, 22.6vw, 20.375rem);
+    height: clamp(16.5rem, 30.2vw, 27.1875rem);
+    background:
+      radial-gradient(circle at 50% 42%, rgb(230 85 126 / 16%), transparent 32%),
+      linear-gradient(135deg, transparent calc(50% - 1px), rgb(0 0 0 / 18%) 50%, transparent calc(50% + 1px)),
+      linear-gradient(45deg, transparent calc(50% - 1px), rgb(0 0 0 / 18%) 50%, transparent calc(50% + 1px)),
+      var(--color-cream);
+    border: 1px solid rgb(0 0 0 / 12%);
+  }
+
+  .image-row__slot--lead {
+    flex-basis: clamp(12rem, 22.6vw, 20.375rem);
+    height: clamp(16.5rem, 30.2vw, 27.1875rem);
+    margin-left: 0;
+  }
+
+  @media (max-width: 47.99rem) {
+    .image-row__track {
+      overflow-x: auto;
+      height: auto;
+      margin-top: -0.5rem;
+      padding: 1.5rem 1rem 2.25rem;
+      scroll-snap-type: x mandatory;
+    }
+
+    .image-row__slot,
+    .image-row__slot--lead {
+      flex: 0 0 70vw;
+      height: 22rem;
+      margin-left: 0;
+      scroll-snap-align: start;
+    }
+  }
+</style>

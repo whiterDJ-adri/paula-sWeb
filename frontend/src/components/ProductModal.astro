@@ -5,7 +5,7 @@
 
 <!-- Overlay del modal, oculto por defecto -->
 <div id="product-modal" class="modal-overlay" aria-hidden="true">
-  <div class="modal-box">
+  <div class="modal-box" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <button class="modal-close" id="modal-close-btn" aria-label="Cerrar">✕</button>
     <div class="modal-inner">
       <div class="modal-image">
@@ -24,7 +24,7 @@
   .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgb(0 0 0 / 50%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -40,7 +40,7 @@
   }
 
   .modal-box {
-    background: #fff;
+    background: var(--color-canvas);
     max-width: 800px;
     width: 90%;
     max-height: 90vh;
@@ -62,7 +62,7 @@
     border: none;
     font-size: 1.25rem;
     cursor: pointer;
-    color: #111;
+    color: var(--color-ink);
     z-index: 10;
     line-height: 1;
   }
@@ -75,7 +75,7 @@
   .modal-image {
     aspect-ratio: 3 / 4;
     overflow: hidden;
-    background: #f0f0f0;
+    background: var(--color-cream);
   }
 
   .modal-image img {
@@ -97,19 +97,19 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
     margin: 0;
-    color: #111;
+    color: var(--color-ink);
   }
 
   .modal-price {
     font-size: 1.1rem;
     font-weight: 500;
-    color: #111;
+    color: var(--color-ink);
     margin: 0;
   }
 
   .modal-desc {
     font-size: 0.875rem;
-    color: #555;
+    color: var(--color-muted);
     line-height: 1.6;
     margin: 0;
   }
@@ -157,3 +157,4 @@
     document.body.style.overflow = 'hidden';
   });
 </script>
+    border: 1px solid var(--color-line);

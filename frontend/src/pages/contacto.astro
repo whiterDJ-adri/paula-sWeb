@@ -1,0 +1,85 @@
+---
+import FormApi from "../components/formApi.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Contacto | PATO Studio" description="Contacta con PATO Studio para encargos, colaboraciones y dudas sobre piezas.">
+  <section class="contact-page" aria-labelledby="contact-title">
+    <div class="intro">
+      <p>CONTACTO</p>
+      <h1 id="contact-title">Cuéntanos qué tienes en mente</h1>
+      <div class="copy">
+        <p>
+          Para encargos, dudas sobre piezas, colaboraciones o propuestas personalizadas.
+        </p>
+        <p>
+          Respondemos cuando el mensaje encaja con el proceso creativo y los tiempos del estudio.
+        </p>
+      </div>
+    </div>
+
+    <div class="form-panel">
+      <FormApi />
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contact-page {
+    display: grid;
+    grid-template-columns: minmax(0, 0.85fr) minmax(20rem, 1fr);
+    gap: clamp(2.5rem, 6vw, 6rem);
+    max-width: var(--container);
+    margin-inline: auto;
+    padding: clamp(4rem, 8vw, 7rem) clamp(1rem, 4.4vw, 4rem) clamp(6rem, 9vw, 8rem);
+  }
+
+  .intro {
+    align-self: start;
+  }
+
+  .intro > p {
+    margin: 0 0 1rem;
+    color: var(--color-brand);
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  h1 {
+    max-width: 34rem;
+    margin: 0;
+    color: var(--color-ink);
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 6.5vw, 5.75rem);
+    line-height: 0.95;
+  }
+
+  .copy {
+    display: grid;
+    gap: 1rem;
+    max-width: 35rem;
+    margin-top: 2rem;
+  }
+
+  .copy p {
+    margin: 0;
+    color: #474747;
+    font-family: var(--font-mono);
+    font-size: clamp(1rem, 1.4vw, 1.25rem);
+    font-weight: 700;
+    line-height: 1.25;
+  }
+
+  .form-panel {
+    border: 1px solid var(--color-line);
+    background: rgb(255 255 255 / 60%);
+    padding: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  @media (max-width: 52rem) {
+    .contact-page {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
