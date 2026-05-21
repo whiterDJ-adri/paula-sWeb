@@ -1,0 +1,676 @@
+{
+	"tienda": {
+		"coleccionTheMolting": [
+			{
+				"id": "tm-01",
+				"slug": "soft-venom-tm-01",
+				"codigo": "TM 01",
+				"nombre": "Soft Venom - TM 01",
+				"descripcion": "Pieza de la colección The Molting. Un anillo único que encapsula pequeños fragmentos reciclados dentro de una estructura de resina transparente. La pieza juega con el contraste entre la claridad de la base y una explosión de color en tonos rosa, morado y otros detalles. 1/1.",
+				"precio": 20,
+				"moneda": "EUR",
+				"urlFoto": "./tienda/coleccionTheMolting/Soft Venom - TM 01.webp",
+				"altFoto": "Anillo Soft Venom TM 01 de la colección The Molting",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 1086,
+					"alto": 1448
+				},
+				"coleccion": "The Molting",
+				"categoria": "Anillos",
+				"materiales": ["Resina", "Fragmentos reciclados"],
+				"colores": ["Transparente", "Rosa", "Morado"],
+				"piezaUnica": true,
+				"stock": 1,
+				"estado": "disponible",
+				"orden": 1
+			},
+			{
+				"id": "tm-02",
+				"slug": "bio-shell-tm-02",
+				"codigo": "TM 02",
+				"nombre": "Bio Shell - TM 02",
+				"descripcion": "Este anillo exclusivo es una exploración de la fluidez y el dinamismo, capturado para siempre en una escultura portable. Moldeado a mano a partir de resina de alta calidad y materiales reciclados seleccionados, la pieza simula una salpicadura líquida suspendida en el tiempo. El contraste entre la banda cristalina y la explosión orgánica de tonos ámbar y amarillo translúcido convierte a esta joya en una obra de arte viva. Al ser una pieza única (1/1) de nuestra primera colección, no existen moldes ni réplicas. Una declaración de intenciones donde el diseño contemporáneo se encuentra con la sostenibilidad.",
+				"precio": 25,
+				"moneda": "EUR",
+				"urlFoto": "./tienda/coleccionTheMolting/Bio Shell - TM 02.webp",
+				"altFoto": "Anillo Bio Shell TM 02 de la colección The Molting",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 1086,
+					"alto": 1448
+				},
+				"coleccion": "The Molting",
+				"categoria": "Anillos",
+				"materiales": ["Resina", "Materiales reciclados"],
+				"colores": ["Transparente", "Ámbar", "Amarillo"],
+				"piezaUnica": true,
+				"stock": 1,
+				"estado": "disponible",
+				"orden": 2
+			},
+			{
+				"id": "tm-03",
+				"slug": "wet-wings-tm-03",
+				"codigo": "TM 03",
+				"nombre": "Wet Wings - TM 03",
+				"descripcion": "Exploración de formas orgánicas a través de la resina. Este anillo experimental combina la transparencia cristalina con explosiones de pigmento amarillo y azul, sellado con un toque rebelde mediante la inserción de piercings. Una escultura portable con mucha identidad.",
+				"precio": 20,
+				"moneda": "EUR",
+				"urlFoto": "./tienda/coleccionTheMolting/Wet Wings - TM 03.webp",
+				"altFoto": "Anillo Wet Wings TM 03 de la colección The Molting",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 1086,
+					"alto": 1448
+				},
+				"coleccion": "The Molting",
+				"categoria": "Anillos",
+				"materiales": ["Resina", "Pigmento", "Piercings"],
+				"colores": ["Transparente", "Amarillo", "Azul"],
+				"piezaUnica": true,
+				"stock": 1,
+				"estado": "disponible",
+				"orden": 3
+			},
+			{
+				"id": "tm-04",
+				"slug": "la-mue-tm-04",
+				"codigo": "TM 04",
+				"nombre": "La Mue - TM 04",
+				"descripcion": "Anillo de resina transparente con un acabado brillante. Tiene una forma orgánica y experimental que recuerda a un líquido congelado. En la parte superior combina un color rojo intenso con toques verdes, mezclado con detalles de pan de plata y cobre. Es una pieza diferente y artística que busca ir más allá de la joyería tradicional.",
+				"precio": 20,
+				"moneda": "EUR",
+				"urlFoto": "./tienda/coleccionTheMolting/La Mue - TM 04.webp",
+				"altFoto": "Anillo La Mue TM 04 de la colección The Molting",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 896,
+					"alto": 1195
+				},
+				"coleccion": "The Molting",
+				"categoria": "Anillos",
+				"materiales": ["Resina", "Pan de plata", "Cobre"],
+				"colores": ["Transparente", "Rojo", "Verde", "Plata", "Cobre"],
+				"piezaUnica": true,
+				"stock": 1,
+				"estado": "disponible",
+				"orden": 4
+			}
+		],
+		"blueTears": [
+			{
+				"id": "bt-01-a",
+				"slug": "blue-tears-tm-01-a",
+				"codigo": "TM 01",
+				"nombre": "Blue Tears - TM 01",
+				"descripcion": "Pieza de la colección Blue Tears.",
+				"precio": "",
+				"moneda": "EUR",
+				"urlFoto": "./tienda/blueTears/Blue Tears  - TM 01.webp",
+				"altFoto": "Pieza Blue Tears TM 01",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 896,
+					"alto": 1195
+				},
+				"coleccion": "Blue Tears",
+				"categoria": "Anillos",
+				"materiales": ["Resina"],
+				"colores": ["Azul"],
+				"piezaUnica": true,
+				"stock": 1,
+				"estado": "disponible",
+				"orden": 1
+			},
+			{
+				"id": "bt-01-b",
+				"slug": "blue-tears-tm-01-b",
+				"codigo": "TM 01",
+				"nombre": "Blue Tears - TM 01",
+				"descripcion": "Pieza de la colección Blue Tears.",
+				"precio": "",
+				"moneda": "EUR",
+				"urlFoto": "./tienda/blueTears/Blue tears - TM 01.webp",
+				"altFoto": "Pieza Blue Tears TM 01",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 1195,
+					"alto": 896
+				},
+				"coleccion": "Blue Tears",
+				"categoria": "Anillos",
+				"materiales": ["Resina"],
+				"colores": ["Azul"],
+				"piezaUnica": true,
+				"stock": 1,
+				"estado": "disponible",
+				"orden": 2
+			}
+		],
+		"fundas": [
+			{
+				"id": "funda-dreams-17",
+				"slug": "dreams-17",
+				"codigo": "DREAMS 17",
+				"nombre": "DREAMS 17",
+				"descripcion": "Funda DREAMS 17.",
+				"precio": "",
+				"moneda": "EUR",
+				"urlFoto": "./tienda/fundas/DREAMS 17.webp",
+				"altFoto": "Funda DREAMS 17",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 896,
+					"alto": 1195
+				},
+				"coleccion": "Fundas",
+				"categoria": "Fundas",
+				"materiales": [],
+				"colores": [],
+				"piezaUnica": true,
+				"stock": 1,
+				"estado": "disponible",
+				"orden": 1
+			},
+			{
+				"id": "funda-tokyo-ip-15",
+				"slug": "tokyo-ip-15",
+				"codigo": "TOKYO IP 15",
+				"nombre": "TOKYO IP 15",
+				"descripcion": "Funda TOKYO IP 15.",
+				"precio": "",
+				"moneda": "EUR",
+				"urlFoto": "./tienda/fundas/TOKYO IP 15.webp",
+				"altFoto": "Funda TOKYO IP 15",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 896,
+					"alto": 1195
+				},
+				"coleccion": "Fundas",
+				"categoria": "Fundas",
+				"materiales": [],
+				"colores": [],
+				"piezaUnica": true,
+				"stock": 1,
+				"estado": "disponible",
+				"orden": 2
+			},
+			{
+				"id": "funda-tokyo-moon-15",
+				"slug": "tokyo-moon-15",
+				"codigo": "TOKYO MOON 15",
+				"nombre": "TOKYO MOON 15",
+				"descripcion": "Funda TOKYO MOON 15.",
+				"precio": "",
+				"moneda": "EUR",
+				"urlFoto": "./tienda/fundas/TOKYO MOON 15.webp",
+				"altFoto": "Funda TOKYO MOON 15",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 896,
+					"alto": 1195
+				},
+				"coleccion": "Fundas",
+				"categoria": "Fundas",
+				"materiales": [],
+				"colores": [],
+				"piezaUnica": true,
+				"stock": 1,
+				"estado": "disponible",
+				"orden": 3
+			}
+		]
+	},
+	"home": {
+		"accesorios": [
+			{
+				"id": "home-accesorios-3",
+				"slug": "home-accesorios-3",
+				"codigo": "3",
+				"nombre": "Accesorios 3",
+				"descripcion": "Asset de home/accesorios.",
+				"precio": "",
+				"moneda": "EUR",
+				"urlFoto": "./home/accesorios/3.webp",
+				"altFoto": "Imagen de accesorios 3",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 1131,
+					"alto": 1600
+				},
+				"coleccion": "Home Accesorios",
+				"categoria": "Accesorios",
+				"materiales": [],
+				"colores": [],
+				"piezaUnica": false,
+				"stock": 0,
+				"estado": "archivo",
+				"orden": 1
+			},
+			{
+				"id": "home-accesorios-5",
+				"slug": "home-accesorios-5",
+				"codigo": "5",
+				"nombre": "Accesorios 5",
+				"descripcion": "Asset de home/accesorios.",
+				"precio": "",
+				"moneda": "EUR",
+				"urlFoto": "./home/accesorios/5.webp",
+				"altFoto": "Imagen de accesorios 5",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 1131,
+					"alto": 1600
+				},
+				"coleccion": "Home Accesorios",
+				"categoria": "Accesorios",
+				"materiales": [],
+				"colores": [],
+				"piezaUnica": false,
+				"stock": 0,
+				"estado": "archivo",
+				"orden": 2
+			}
+		],
+		"home": [
+			{
+				"id": "home-home-2",
+				"slug": "home-home-2",
+				"codigo": "2",
+				"nombre": "Home 2",
+				"descripcion": "Asset de home/home.",
+				"precio": "",
+				"moneda": "EUR",
+				"urlFoto": "./home/home/2.webp",
+				"altFoto": "Imagen de home 2",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 3383,
+					"alto": 2716
+				},
+				"coleccion": "Home",
+				"categoria": "Editorial",
+				"materiales": [],
+				"colores": [],
+				"piezaUnica": false,
+				"stock": 0,
+				"estado": "archivo",
+				"orden": 1
+			},
+			{
+				"id": "home-home-9",
+				"slug": "home-home-9",
+				"codigo": "9",
+				"nombre": "Home 9",
+				"descripcion": "Asset de home/home.",
+				"precio": "",
+				"moneda": "EUR",
+				"urlFoto": "./home/home/9.webp",
+				"altFoto": "Imagen de home 9",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 6480,
+					"alto": 8117
+				},
+				"coleccion": "Home",
+				"categoria": "Editorial",
+				"materiales": [],
+				"colores": [],
+				"piezaUnica": false,
+				"stock": 0,
+				"estado": "archivo",
+				"orden": 2
+			},
+			{
+				"id": "home-home-10",
+				"slug": "home-home-10",
+				"codigo": "10",
+				"nombre": "Home 10",
+				"descripcion": "Asset de home/home.",
+				"precio": "",
+				"moneda": "EUR",
+				"urlFoto": "./home/home/10.webp",
+				"altFoto": "Imagen de home 10",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 5536,
+					"alto": 4160
+				},
+				"coleccion": "Home",
+				"categoria": "Editorial",
+				"materiales": [],
+				"colores": [],
+				"piezaUnica": false,
+				"stock": 0,
+				"estado": "archivo",
+				"orden": 3
+			}
+		],
+		"theMolting": [
+			{
+				"id": "home-the-molting-7",
+				"slug": "home-the-molting-7",
+				"codigo": "7",
+				"nombre": "The Molting 7",
+				"descripcion": "Asset de home/theMolting.",
+				"precio": "",
+				"moneda": "EUR",
+				"urlFoto": "./home/theMolting/7.webp",
+				"altFoto": "Imagen The Molting 7",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 4160,
+					"alto": 5536
+				},
+				"coleccion": "The Molting",
+				"categoria": "Editorial",
+				"materiales": [],
+				"colores": [],
+				"piezaUnica": false,
+				"stock": 0,
+				"estado": "archivo",
+				"orden": 1
+			},
+			{
+				"id": "home-the-molting-8",
+				"slug": "home-the-molting-8",
+				"codigo": "8",
+				"nombre": "The Molting 8",
+				"descripcion": "Asset de home/theMolting.",
+				"precio": "",
+				"moneda": "EUR",
+				"urlFoto": "./home/theMolting/8.webp",
+				"altFoto": "Imagen The Molting 8",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 4160,
+					"alto": 5536
+				},
+				"coleccion": "The Molting",
+				"categoria": "Editorial",
+				"materiales": [],
+				"colores": [],
+				"piezaUnica": false,
+				"stock": 0,
+				"estado": "archivo",
+				"orden": 2
+			},
+			{
+				"id": "home-the-molting-11",
+				"slug": "home-the-molting-11",
+				"codigo": "11",
+				"nombre": "The Molting 11",
+				"descripcion": "Asset de home/theMolting.",
+				"precio": "",
+				"moneda": "EUR",
+				"urlFoto": "./home/theMolting/11.webp",
+				"altFoto": "Imagen The Molting 11",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 4160,
+					"alto": 5536
+				},
+				"coleccion": "The Molting",
+				"categoria": "Editorial",
+				"materiales": [],
+				"colores": [],
+				"piezaUnica": false,
+				"stock": 0,
+				"estado": "archivo",
+				"orden": 3
+			},
+			{
+				"id": "home-the-molting-12",
+				"slug": "home-the-molting-12",
+				"codigo": "12",
+				"nombre": "The Molting 12",
+				"descripcion": "Asset de home/theMolting.",
+				"precio": "",
+				"moneda": "EUR",
+				"urlFoto": "./home/theMolting/12.webp",
+				"altFoto": "Imagen The Molting 12",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 5536,
+					"alto": 4160
+				},
+				"coleccion": "The Molting",
+				"categoria": "Editorial",
+				"materiales": [],
+				"colores": [],
+				"piezaUnica": false,
+				"stock": 0,
+				"estado": "archivo",
+				"orden": 4
+			},
+			{
+				"id": "home-the-molting-13",
+				"slug": "home-the-molting-13",
+				"codigo": "13",
+				"nombre": "The Molting 13",
+				"descripcion": "Asset de home/theMolting.",
+				"precio": "",
+				"moneda": "EUR",
+				"urlFoto": "./home/theMolting/13.webp",
+				"altFoto": "Imagen The Molting 13",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 3172,
+					"alto": 2930
+				},
+				"coleccion": "The Molting",
+				"categoria": "Editorial",
+				"materiales": [],
+				"colores": [],
+				"piezaUnica": false,
+				"stock": 0,
+				"estado": "archivo",
+				"orden": 5
+			},
+			{
+				"id": "home-the-molting-14",
+				"slug": "home-the-molting-14",
+				"codigo": "14",
+				"nombre": "The Molting 14",
+				"descripcion": "Asset de home/theMolting.",
+				"precio": "",
+				"moneda": "EUR",
+				"urlFoto": "./home/theMolting/14.webp",
+				"altFoto": "Imagen The Molting 14",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 2770,
+					"alto": 2521
+				},
+				"coleccion": "The Molting",
+				"categoria": "Editorial",
+				"materiales": [],
+				"colores": [],
+				"piezaUnica": false,
+				"stock": 0,
+				"estado": "archivo",
+				"orden": 6
+			}
+		],
+		"theMoltingHome": [
+			{
+				"id": "home-the-molting-home-1",
+				"slug": "home-the-molting-home-1",
+				"codigo": "1",
+				"nombre": "The Molting Home 1",
+				"descripcion": "Asset de home/theMoltingHome.",
+				"precio": "",
+				"moneda": "EUR",
+				"urlFoto": "./home/theMoltingHome/1.webp",
+				"altFoto": "Imagen The Molting Home 1",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 827,
+					"alto": 1089
+				},
+				"coleccion": "The Molting Home",
+				"categoria": "Editorial",
+				"materiales": [],
+				"colores": [],
+				"piezaUnica": false,
+				"stock": 0,
+				"estado": "archivo",
+				"orden": 1
+			},
+			{
+				"id": "home-the-molting-home-3",
+				"slug": "home-the-molting-home-3",
+				"codigo": "3",
+				"nombre": "The Molting Home 3",
+				"descripcion": "Asset de home/theMoltingHome.",
+				"precio": "",
+				"moneda": "EUR",
+				"urlFoto": "./home/theMoltingHome/3.webp",
+				"altFoto": "Imagen The Molting Home 3",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 828,
+					"alto": 1243
+				},
+				"coleccion": "The Molting Home",
+				"categoria": "Editorial",
+				"materiales": [],
+				"colores": [],
+				"piezaUnica": false,
+				"stock": 0,
+				"estado": "archivo",
+				"orden": 2
+			},
+			{
+				"id": "home-the-molting-home-4",
+				"slug": "home-the-molting-home-4",
+				"codigo": "4",
+				"nombre": "The Molting Home 4",
+				"descripcion": "Asset de home/theMoltingHome.",
+				"precio": "",
+				"moneda": "EUR",
+				"urlFoto": "./home/theMoltingHome/4.webp",
+				"altFoto": "Imagen The Molting Home 4",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 827,
+					"alto": 1089
+				},
+				"coleccion": "The Molting Home",
+				"categoria": "Editorial",
+				"materiales": [],
+				"colores": [],
+				"piezaUnica": false,
+				"stock": 0,
+				"estado": "archivo",
+				"orden": 3
+			},
+			{
+				"id": "home-the-molting-home-6",
+				"slug": "home-the-molting-home-6",
+				"codigo": "6",
+				"nombre": "The Molting Home 6",
+				"descripcion": "Asset de home/theMoltingHome.",
+				"precio": "",
+				"moneda": "EUR",
+				"urlFoto": "./home/theMoltingHome/6.webp",
+				"altFoto": "Imagen The Molting Home 6",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 828,
+					"alto": 1243
+				},
+				"coleccion": "The Molting Home",
+				"categoria": "Editorial",
+				"materiales": [],
+				"colores": [],
+				"piezaUnica": false,
+				"stock": 0,
+				"estado": "archivo",
+				"orden": 4
+			}
+		]
+	},
+	"patoEspeciales": {
+		"bandejas": [
+			{
+				"id": "pato-especiales-blue-riv-01",
+				"slug": "blue-riv-01",
+				"codigo": "Blue riv 01",
+				"nombre": "Blue riv 01",
+				"descripcion": "Asset de patoEspeciales/Bandejas.",
+				"precio": "",
+				"moneda": "EUR",
+				"urlFoto": "./patoEspeciales/Bandejas/Blue riv 01_.webp",
+				"altFoto": "Bandeja Blue riv 01",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 1800,
+					"alto": 2400
+				},
+				"coleccion": "Pato Especiales",
+				"categoria": "Bandejas",
+				"materiales": [],
+				"colores": ["Azul"],
+				"piezaUnica": true,
+				"stock": 1,
+				"estado": "disponible",
+				"orden": 1
+			}
+		],
+		"ceniceros": [
+			{
+				"id": "pato-especiales-pucca",
+				"slug": "pucca",
+				"codigo": "PUCCA",
+				"nombre": "PUCCA",
+				"descripcion": "Asset de patoEspeciales/CENICEROS.",
+				"precio": "",
+				"moneda": "EUR",
+				"urlFoto": "./patoEspeciales/CENICEROS/PUCCA .webp",
+				"altFoto": "Cenicero PUCCA",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 896,
+					"alto": 1195
+				},
+				"coleccion": "Pato Especiales",
+				"categoria": "Ceniceros",
+				"materiales": [],
+				"colores": [],
+				"piezaUnica": true,
+				"stock": 1,
+				"estado": "disponible",
+				"orden": 1
+			}
+		],
+		"especiales": [
+			{
+				"id": "pato-especiales-red-tec",
+				"slug": "red-tec",
+				"codigo": "RED Tec",
+				"nombre": "RED Tec",
+				"descripcion": "Asset de patoEspeciales/Especiales.",
+				"precio": "",
+				"moneda": "EUR",
+				"urlFoto": "./patoEspeciales/Especiales/RED Tec .webp",
+				"altFoto": "Pieza especial RED Tec",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 896,
+					"alto": 1195
+				},
+				"coleccion": "Pato Especiales",
+				"categoria": "Especiales",
+				"materiales": [],
+				"colores": ["Rojo"],
+				"piezaUnica": true,
+				"stock": 1,
+				"estado": "disponible",
+				"orden": 1
+			}
+		]
+	}
+}

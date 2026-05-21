@@ -3,49 +3,118 @@ import Layout from "../layouts/Layout.astro";
 import ProductGrid from "../components/ProductGrid.astro";
 import ProductModal from "../components/ProductModal.astro";
 import ShopCategoryNav from "../components/ShopCategoryNav.astro";
+import shopData from "../assets/data.json";
+import type { ImageMetadata } from "astro";
 
 interface Product {
-  nombre?: string;
-  precio?: number | string;
-  imagen?: string;
-  desc?: string;
-  categoria?: string;
-  category?: string;
+	nombre?: string;
+	precio?: number | string;
+	imagen?: ImageMetadata | string;
+	imageAlt?: string;
+	desc?: string;
+	details?: string;
 }
 
-const categories = [
-  { id: "anillos", title: "Anillos" },
-  { id: "brazaletes", title: "Brazaletes" },
-  { id: "collares", title: "Collares" },
-  { id: "pendientes", title: "Pendientes" },
-];
+interface JsonProduct {
+	nombre?: string;
+	descripcion?: string;
+	precio?: number | string;
+	urlFoto?: string;
+	altFoto?: string;
+	coleccion?: string;
+	categoria?: string;
+	materiales?: string[];
+	colores?: string[];
+	piezaUnica?: boolean;
+	stock?: number;
+	estado?: string;
+	orden?: number;
+}
 
-const products: Product[] = [];
-const normalize = (value = "") => value.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "");
-const byCategory = (title: string) => products.filter((product) => {
-  const category = normalize(product.categoria ?? product.category ?? "");
-  return category === normalize(title);
-});
+interface SiteData {
+	tienda: Record<string, JsonProduct[]>;
+}
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+	"../assets/**/*.{png,jpg,jpeg,webp}",
+	{ eager: true },
+);
+
+const formatTitle = (folder: string) =>
+	folder
+		.replace(/([a-z])([A-Z])/g, "$1 $2")
+		.replace(/[-_]/g, " ")
+		.replace(/\b\w/g, (letter) => letter.toUpperCase());
+
+const normalize = (value = "") =>
+	value
+		.toLowerCase()
+		.normalize("NFD")
+		.replace(/\p{Diacritic}/gu, "");
+
+const tiendaData = (shopData as SiteData).tienda;
+
+const sections = Object.entries(tiendaData).map(
+	([folder, products]) => ({
+		id: normalize(formatTitle(folder)).replace(/\s+/g, "-"),
+		title: formatTitle(folder),
+		products: [...products]
+			.sort((a, b) => (a.orden ?? 0) - (b.orden ?? 0))
+			.map((product) => {
+				const imagePath = product.urlFoto?.replace("./", "../assets/");
+				const details = [
+					product.coleccion ? `Colección: ${product.coleccion}` : undefined,
+					product.categoria ? `Categoría: ${product.categoria}` : undefined,
+					product.materiales?.length ? `Materiales: ${product.materiales.join(", ")}` : undefined,
+					product.colores?.length ? `Colores: ${product.colores.join(", ")}` : undefined,
+					product.piezaUnica ? "Pieza única 1/1" : undefined,
+					product.stock !== undefined ? `Stock: ${product.stock}` : undefined,
+					product.estado ? `Estado: ${product.estado}` : undefined,
+				].filter(Boolean).join(" | ");
+
+				return {
+					nombre: product.nombre,
+					precio: product.precio,
+					desc: product.descripcion,
+					imagen: imagePath ? images[imagePath]?.default : undefined,
+					imageAlt: product.altFoto ?? product.nombre,
+					details,
+				};
+			}),
+	}),
+);
+
+const navLinks = sections.map((section) => ({
+	href: `#${section.id}`,
+	label: section.title,
+}));
 ---
 
-<Layout title="Tienda | PATO Studio" description="Tienda de PATO Studio con anillos, brazaletes, collares y pendientes.">
-  <ShopCategoryNav />
-  <div class="shop-page" aria-label="Tienda PATO Studio">
-    {categories.map((category) => (
-      <ProductGrid
-        id={category.id}
-        title={category.title}
-        products={byCategory(category.title)}
-        emptyMessage={`Piezas de ${category.title.toLowerCase()} pendientes de integrar.`}
-        minItems={12}
-      />
-    ))}
-  </div>
-  <ProductModal />
+
+<Layout
+	title="Tienda | PATO Studio"
+	description="Tienda de PATO Studio con anillos, brazaletes, collares y pendientes.">
+	<ShopCategoryNav links={navLinks} />
+	<div
+		class="shop-page"
+		aria-label="Tienda PATO Studio">
+		{
+			sections.map((section) => (
+				<ProductGrid
+					id={section.id}
+					title={section.title}
+					products={section.products}
+					emptyMessage={`Piezas de ${section.title.toLowerCase()} pendientes de integrar.`}
+					minItems={12}
+				/>
+			))
+		}
+	</div>
+	<ProductModal />
 </Layout>
 
 <style>
-  .shop-page {
-    padding-bottom: 8rem;
-  }
+	.shop-page {
+		padding-bottom: 8rem;
+	}
 </style>

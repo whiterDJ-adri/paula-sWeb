@@ -1,12 +1,14 @@
 ---
-import { Image } from "astro:assets";
+import { Image, getImage } from "astro:assets";
+import type { ImageMetadata } from "astro";
 
 interface Props {
   title: string;
   price?: number | string;
-  image?: string;
+  image?: ImageMetadata | string;
   imageAlt?: string;
   desc?: string;
+  details?: string;
   placeholder?: boolean;
 }
 
@@ -16,17 +18,25 @@ const {
   image,
   imageAlt = title,
   desc = "",
+  details = "",
   placeholder = false,
 } = Astro.props;
+
+const imageUrl = typeof image === "string"
+  ? image
+  : image
+    ? (await getImage({ src: image, width: 800, format: "webp" })).src
+    : undefined;
 ---
 
 <article
   class="product-card"
   data-title={title}
   data-price={price ?? ""}
-  data-image={image ?? ""}
+  data-image={imageUrl ?? ""}
   data-image-alt={imageAlt}
   data-desc={desc}
+  data-details={details}
 >
   <button type="button" aria-label={`Ver detalle de ${title}`}>
     <span class="image-wrap">
@@ -61,6 +71,7 @@ const {
           image: card.dataset.image,
           imageAlt: card.dataset.imageAlt,
           desc: card.dataset.desc,
+          details: card.dataset.details,
         },
       }));
     });

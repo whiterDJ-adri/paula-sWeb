@@ -1,11 +1,14 @@
 ---
 import ProductCard from "./ProductCard.astro";
+import type { ImageMetadata } from "astro";
 
 interface Product {
   nombre?: string;
   precio?: number | string;
-  imagen?: string;
+  imagen?: ImageMetadata | string;
+  imageAlt?: string;
   desc?: string;
+  details?: string;
   categoria?: string;
   category?: string;
 }
@@ -41,10 +44,11 @@ const items = products.length > 0
     {items.map((producto, index) => (
       <ProductCard
         title={producto.nombre ?? "Producto PATO"}
-        price={producto.precio ? `€${producto.precio}` : undefined}
+        price={producto.precio !== undefined && producto.precio !== null && producto.precio !== "" ? `€${producto.precio}` : undefined}
         image={producto.imagen}
-        imageAlt={producto.nombre ?? "Producto PATO"}
+        imageAlt={producto.imageAlt ?? producto.nombre ?? "Producto PATO"}
         desc={producto.desc ?? ""}
+        details={producto.details ?? ""}
         placeholder={products.length === 0}
       />
     ))}

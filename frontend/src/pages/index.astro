@@ -4,15 +4,52 @@ import EditorialGallery from "../components/EditorialGallery.astro";
 import HeroSection from "../components/HeroSection.astro";
 import HomeImageRow from "../components/HomeImageRow.astro";
 import HomeStory from "../components/HomeStory.astro";
+import siteData from "../assets/data.json";
+import type { ImageMetadata } from "astro";
+
+interface JsonAsset {
+	nombre?: string;
+	altFoto?: string;
+	urlFoto?: string;
+	orden?: number;
+}
+
+interface SiteData {
+	home: Record<string, JsonAsset[]>;
+}
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+	"../assets/**/*.{png,jpg,jpeg,webp}",
+	{ eager: true },
+);
+
+const toItems = (assets: JsonAsset[] = []) =>
+	[...assets]
+		.sort((a, b) => (a.orden ?? 0) - (b.orden ?? 0))
+		.map((asset) => {
+			const imagePath = asset.urlFoto?.replace("./", "../assets/");
+
+			return {
+				image: imagePath ? images[imagePath]?.default : undefined,
+				alt: asset.altFoto ?? asset.nombre ?? "Imagen PATO Studio",
+				label: asset.nombre,
+			};
+		});
+
+const homeData = (siteData as SiteData).home;
+const rowItems = toItems(homeData.theMoltingHome);
+const featureItems = toItems(homeData.theMolting).slice(0, 3);
+const homeItems = toItems(homeData.home);
+const accessoryItems = toItems(homeData.accesorios);
 ---
 
 <Layout title="PATO Studio">
   <HeroSection />
-  <HomeImageRow />
+  <HomeImageRow items={rowItems} />
   <div class="home-sections">
-    <EditorialGallery />
-    <EditorialGallery title="ANTERIORES" subtitle="" variant="archive" />
-    <EditorialGallery title="ANTERIORES" subtitle="" variant="archive" />
+    <EditorialGallery items={featureItems} />
+    <EditorialGallery title="ANTERIORES" subtitle="" variant="archive" items={homeItems} />
+    <EditorialGallery title="ACCESORIOS" subtitle="" variant="archive" items={accessoryItems} />
   </div>
   <HomeStory />
 </Layout>
