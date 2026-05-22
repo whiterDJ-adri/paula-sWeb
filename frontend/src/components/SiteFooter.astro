@@ -11,12 +11,17 @@ interface Props {
 const {
   links = [
     { href: "/", label: "INICIO" },
-    { href: "/#servicios", label: "SERVICIOS" },
     { href: "/#nosotros", label: "NOSOTROS" },
+    { href: "/tienda", label: "TIENDA" },
     { href: "/contacto", label: "CONTACTO" },
-    { href: "/privacidad", label: "POLÍTICAS DE PRIVACIDAD" },
   ],
 } = Astro.props;
+
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+const withBase = (href: string) => {
+  if (href.startsWith("#") || href.startsWith("http")) return href;
+  return `${basePath}${href}`;
+};
 ---
 
 <footer class="site-footer">
@@ -24,7 +29,7 @@ const {
     <ul>
       {links.map((link) => (
         <li>
-          <a href={link.href}>{link.label}</a>
+          <a href={withBase(link.href)}>{link.label}</a>
         </li>
       ))}
     </ul>

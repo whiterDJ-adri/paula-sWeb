@@ -1,0 +1,106 @@
+---
+import Layout from "../layouts/Layout.astro";
+import ProductGrid from "../components/ProductGrid.astro";
+import ProductModal from "../components/ProductModal.astro";
+import ShopCategoryNav from "../components/ShopCategoryNav.astro";
+import siteData from "../assets/data.json";
+import type { ImageMetadata } from "astro";
+
+interface JsonProduct {
+	nombre?: string;
+	descripcion?: string;
+	precio?: number | string;
+	urlFoto?: string;
+	altFoto?: string;
+	coleccion?: string;
+	categoria?: string;
+	materiales?: string[];
+	colores?: string[];
+	piezaUnica?: boolean;
+	stock?: number;
+	estado?: string;
+	orden?: number;
+}
+
+interface SiteData {
+	patoEspeciales: Record<string, JsonProduct[]>;
+}
+
+const images = import.meta.glob<{ default: ImageMetadata }>(
+	"../assets/**/*.{png,jpg,jpeg,webp}",
+	{ eager: true },
+);
+
+const formatTitle = (folder: string) =>
+	folder
+		.replace(/([a-z])([A-Z])/g, "$1 $2")
+		.replace(/[-_]/g, " ")
+		.replace(/\b\w/g, (letter) => letter.toUpperCase());
+
+const normalize = (value = "") =>
+	value
+		.toLowerCase()
+		.normalize("NFD")
+		.replace(/\p{Diacritic}/gu, "");
+
+const sections = Object.entries((siteData as SiteData).patoEspeciales).map(
+	([folder, products]) => ({
+		id: normalize(formatTitle(folder)).replace(/\s+/g, "-"),
+		title: formatTitle(folder),
+		products: [...products]
+			.sort((a, b) => (a.orden ?? 0) - (b.orden ?? 0))
+			.map((product) => {
+				const imagePath = product.urlFoto?.replace("./", "../assets/");
+				const details = [
+					product.coleccion ? `Colección: ${product.coleccion}` : undefined,
+					product.categoria ? `Categoría: ${product.categoria}` : undefined,
+					product.materiales?.length ? `Materiales: ${product.materiales.join(", ")}` : undefined,
+					product.colores?.length ? `Colores: ${product.colores.join(", ")}` : undefined,
+					product.piezaUnica ? "Pieza única 1/1" : undefined,
+					product.stock !== undefined ? `Stock: ${product.stock}` : undefined,
+					product.estado ? `Estado: ${product.estado}` : undefined,
+				].filter(Boolean).join(" | ");
+
+				return {
+					nombre: product.nombre,
+					precio: product.precio,
+					desc: product.descripcion,
+					imagen: imagePath ? images[imagePath]?.default : undefined,
+					imageAlt: product.altFoto ?? product.nombre,
+					details,
+				};
+			}),
+	}),
+);
+
+const navLinks = sections.map((section) => ({
+	href: `#${section.id}`,
+	label: section.title,
+}));
+---
+
+<Layout
+	title="PATO especiales | PATO Studio"
+	description="Piezas especiales de PATO Studio.">
+	<ShopCategoryNav links={navLinks} />
+	<div class="specials-page" aria-label="PATO especiales">
+		{
+			sections.map((section) => (
+				<ProductGrid
+					id={section.id}
+					title={section.title}
+					products={section.products}
+					emptyMessage={`Piezas de ${section.title.toLowerCase()} pendientes de integrar.`}
+					minItems={6}
+				/>
+			))
+		}
+	</div>
+	<ProductModal />
+</Layout>
+
+<style>
+	.specials-page {
+		padding-bottom: 8rem;
+	}
+</style>
