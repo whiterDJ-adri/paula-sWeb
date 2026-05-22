@@ -1,4 +1,6 @@
 ---
+import logoUrl from "../assets/Group1.svg";
+
 interface NavLink {
   href: string;
   label: string;
@@ -26,8 +28,7 @@ const isActive = (href: string) => {
 
 <header class="site-header">
   <a class="brand" href="/" aria-label="PATO, ir al inicio">
-    <span>PA</span>
-    <span>TO</span>
+    <img src={logoUrl.src} alt="PATO" width="96" height="89" decoding="async" />
   </a>
 
   <nav class="nav" aria-label="Navegación principal">
@@ -59,18 +60,17 @@ const isActive = (href: string) => {
   }
 
   .brand {
-    display: grid;
-    width: 7.625rem;
-    min-width: 5.5rem;
+    display: block;
+    width: clamp(4.75rem, 7vw, 6rem);
+    min-width: 4.75rem;
     color: var(--color-ink);
-    font-family: var(--font-logo);
-    font-size: clamp(3.5rem, 6vw, 4.5rem);
-    line-height: 0.78;
     text-decoration: none;
   }
 
-  .brand span:last-child {
-    padding-left: 2.35rem;
+  .brand img {
+    display: block;
+    width: 100%;
+    height: auto;
   }
 
   .nav {
@@ -121,11 +121,6 @@ const isActive = (href: string) => {
     .brand {
       width: 4.75rem;
       min-width: 4.75rem;
-      font-size: 3rem;
-    }
-
-    .brand span:last-child {
-      padding-left: 1.6rem;
     }
 
     .nav ul {

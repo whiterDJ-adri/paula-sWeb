@@ -276,6 +276,30 @@
 		],
 		"home": [
 			{
+				"id": "home-hero-image",
+				"slug": "home-hero-image",
+				"codigo": "heroImage",
+				"nombre": "Hero Image",
+				"descripcion": "Asset de home/home.",
+				"precio": "",
+				"moneda": "EUR",
+				"urlFoto": "./home/home/heroImage.webp",
+				"altFoto": "Imagen principal de PATO Studio",
+				"formatoFoto": "webp",
+				"dimensionesFoto": {
+					"ancho": 4160,
+					"alto": 5536
+				},
+				"coleccion": "Home",
+				"categoria": "Editorial",
+				"materiales": [],
+				"colores": [],
+				"piezaUnica": false,
+				"stock": 0,
+				"estado": "archivo",
+				"orden": 1
+			},
+			{
 				"id": "home-home-2",
 				"slug": "home-home-2",
 				"codigo": "2",
@@ -289,30 +313,6 @@
 				"dimensionesFoto": {
 					"ancho": 3383,
 					"alto": 2716
-				},
-				"coleccion": "Home",
-				"categoria": "Editorial",
-				"materiales": [],
-				"colores": [],
-				"piezaUnica": false,
-				"stock": 0,
-				"estado": "archivo",
-				"orden": 1
-			},
-			{
-				"id": "home-home-9",
-				"slug": "home-home-9",
-				"codigo": "9",
-				"nombre": "Home 9",
-				"descripcion": "Asset de home/home.",
-				"precio": "",
-				"moneda": "EUR",
-				"urlFoto": "./home/home/9.webp",
-				"altFoto": "Imagen de home 9",
-				"formatoFoto": "webp",
-				"dimensionesFoto": {
-					"ancho": 6480,
-					"alto": 8117
 				},
 				"coleccion": "Home",
 				"categoria": "Editorial",
@@ -398,30 +398,6 @@
 				"orden": 2
 			},
 			{
-				"id": "home-the-molting-11",
-				"slug": "home-the-molting-11",
-				"codigo": "11",
-				"nombre": "The Molting 11",
-				"descripcion": "Asset de home/theMolting.",
-				"precio": "",
-				"moneda": "EUR",
-				"urlFoto": "./home/theMolting/11.webp",
-				"altFoto": "Imagen The Molting 11",
-				"formatoFoto": "webp",
-				"dimensionesFoto": {
-					"ancho": 4160,
-					"alto": 5536
-				},
-				"coleccion": "The Molting",
-				"categoria": "Editorial",
-				"materiales": [],
-				"colores": [],
-				"piezaUnica": false,
-				"stock": 0,
-				"estado": "archivo",
-				"orden": 3
-			},
-			{
 				"id": "home-the-molting-12",
 				"slug": "home-the-molting-12",
 				"codigo": "12",
@@ -443,7 +419,7 @@
 				"piezaUnica": false,
 				"stock": 0,
 				"estado": "archivo",
-				"orden": 4
+				"orden": 3
 			},
 			{
 				"id": "home-the-molting-13",
@@ -467,7 +443,7 @@
 				"piezaUnica": false,
 				"stock": 0,
 				"estado": "archivo",
-				"orden": 5
+				"orden": 4
 			},
 			{
 				"id": "home-the-molting-14",
@@ -491,26 +467,26 @@
 				"piezaUnica": false,
 				"stock": 0,
 				"estado": "archivo",
-				"orden": 6
+				"orden": 5
 			}
 		],
-		"theMoltingHome": [
+		"carrousel": [
 			{
-				"id": "home-the-molting-home-1",
-				"slug": "home-the-molting-home-1",
+				"id": "home-carrousel-1",
+				"slug": "home-carrousel-1",
 				"codigo": "1",
-				"nombre": "The Molting Home 1",
-				"descripcion": "Asset de home/theMoltingHome.",
+				"nombre": "Carrousel 1",
+				"descripcion": "Asset de home/carrousel.",
 				"precio": "",
 				"moneda": "EUR",
-				"urlFoto": "./home/theMoltingHome/1.webp",
-				"altFoto": "Imagen The Molting Home 1",
+				"urlFoto": "./home/carrousel/1.webp",
+				"altFoto": "Imagen de carrusel 1",
 				"formatoFoto": "webp",
 				"dimensionesFoto": {
 					"ancho": 827,
 					"alto": 1089
 				},
-				"coleccion": "The Molting Home",
+				"coleccion": "Home Carrousel",
 				"categoria": "Editorial",
 				"materiales": [],
 				"colores": [],
@@ -520,21 +496,21 @@
 				"orden": 1
 			},
 			{
-				"id": "home-the-molting-home-3",
-				"slug": "home-the-molting-home-3",
+				"id": "home-carrousel-3",
+				"slug": "home-carrousel-3",
 				"codigo": "3",
-				"nombre": "The Molting Home 3",
-				"descripcion": "Asset de home/theMoltingHome.",
+				"nombre": "Carrousel 3",
+				"descripcion": "Asset de home/carrousel.",
 				"precio": "",
 				"moneda": "EUR",
-				"urlFoto": "./home/theMoltingHome/3.webp",
-				"altFoto": "Imagen The Molting Home 3",
+				"urlFoto": "./home/carrousel/3.webp",
+				"altFoto": "Imagen de carrusel 3",
 				"formatoFoto": "webp",
 				"dimensionesFoto": {
 					"ancho": 828,
 					"alto": 1243
 				},
-				"coleccion": "The Molting Home",
+				"coleccion": "Home Carrousel",
 				"categoria": "Editorial",
 				"materiales": [],
 				"colores": [],
@@ -544,21 +520,21 @@
 				"orden": 2
 			},
 			{
-				"id": "home-the-molting-home-4",
-				"slug": "home-the-molting-home-4",
+				"id": "home-carrousel-4",
+				"slug": "home-carrousel-4",
 				"codigo": "4",
-				"nombre": "The Molting Home 4",
-				"descripcion": "Asset de home/theMoltingHome.",
+				"nombre": "Carrousel 4",
+				"descripcion": "Asset de home/carrousel.",
 				"precio": "",
 				"moneda": "EUR",
-				"urlFoto": "./home/theMoltingHome/4.webp",
-				"altFoto": "Imagen The Molting Home 4",
+				"urlFoto": "./home/carrousel/4.webp",
+				"altFoto": "Imagen de carrusel 4",
 				"formatoFoto": "webp",
 				"dimensionesFoto": {
 					"ancho": 827,
 					"alto": 1089
 				},
-				"coleccion": "The Molting Home",
+				"coleccion": "Home Carrousel",
 				"categoria": "Editorial",
 				"materiales": [],
 				"colores": [],
@@ -568,21 +544,21 @@
 				"orden": 3
 			},
 			{
-				"id": "home-the-molting-home-6",
-				"slug": "home-the-molting-home-6",
+				"id": "home-carrousel-6",
+				"slug": "home-carrousel-6",
 				"codigo": "6",
-				"nombre": "The Molting Home 6",
-				"descripcion": "Asset de home/theMoltingHome.",
+				"nombre": "Carrousel 6",
+				"descripcion": "Asset de home/carrousel.",
 				"precio": "",
 				"moneda": "EUR",
-				"urlFoto": "./home/theMoltingHome/6.webp",
-				"altFoto": "Imagen The Molting Home 6",
+				"urlFoto": "./home/carrousel/6.webp",
+				"altFoto": "Imagen de carrusel 6",
 				"formatoFoto": "webp",
 				"dimensionesFoto": {
 					"ancho": 828,
 					"alto": 1243
 				},
-				"coleccion": "The Molting Home",
+				"coleccion": "Home Carrousel",
 				"categoria": "Editorial",
 				"materiales": [],
 				"colores": [],

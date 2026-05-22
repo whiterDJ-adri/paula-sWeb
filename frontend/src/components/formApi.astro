@@ -5,7 +5,7 @@ interface Props {
 }
 
 const {
-  accessKey = "08b6397c-24f3-49f0-8d21-b99071eedb13",
+  accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY,
   subject = "Nuevo mensaje desde PATO Studio",
 } = Astro.props;
 ---

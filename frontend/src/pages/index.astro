@@ -34,17 +34,18 @@ const toItems = (assets: JsonAsset[] = []) =>
 				alt: asset.altFoto ?? asset.nombre ?? "Imagen PATO Studio",
 				label: asset.nombre,
 			};
-		});
+		})
+		.filter((item) => item.image);
 
 const homeData = (siteData as SiteData).home;
-const rowItems = toItems(homeData.theMoltingHome);
+const rowItems = toItems(homeData.carrousel);
 const featureItems = toItems(homeData.theMolting).slice(0, 3);
-const homeItems = toItems(homeData.home);
+const [heroItem, ...homeItems] = toItems(homeData.home);
 const accessoryItems = toItems(homeData.accesorios);
 ---
 
 <Layout title="PATO Studio">
-  <HeroSection />
+  <HeroSection image={heroItem?.image} alt={heroItem?.alt} />
   <HomeImageRow items={rowItems} />
   <div class="home-sections">
     <EditorialGallery items={featureItems} />
