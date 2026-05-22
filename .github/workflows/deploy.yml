@@ -35,6 +35,8 @@ jobs:
       - name: Compilar Astro
         run: npm run build
         working-directory: frontend
+        env:
+          PUBLIC_WEB3FORMS_ACCESS_KEY: ${{ secrets.WEB3FORMS_ACCESS_KEY }}
 
       - name: Subir artifact de Pages
         uses: actions/upload-pages-artifact@v4
