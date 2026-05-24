@@ -34,15 +34,16 @@ const rowItems = items.length > 0
   .image-row {
     overflow: hidden;
     background: var(--color-canvas);
+    padding-top: clamp(2rem, 4vw, 4rem);
   }
 
   .image-row__track {
     display: flex;
     align-items: center;
-    gap: clamp(1.5rem, 3.5vw, 3.125rem);
+    gap: clamp(2.5rem, 5vw, 5.5rem);
     width: min(99.6vw, 89.5625rem);
     height: clamp(16.5rem, 30.2vw, 27.1875rem);
-    margin: -1.4375rem auto 0;
+    margin: 0 auto;
   }
 
   .image-row__slot {
@@ -73,8 +74,9 @@ const rowItems = items.length > 0
     .image-row__track {
       overflow-x: auto;
       height: auto;
-      margin-top: -0.5rem;
-      padding: 1.5rem 1rem 2.25rem;
+      margin-top: 0;
+      gap: 1.5rem;
+      padding: 2rem 1rem 2.75rem;
       scroll-snap-type: x mandatory;
     }
 

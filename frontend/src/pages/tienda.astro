@@ -46,6 +46,16 @@ const formatTitle = (folder: string) =>
 		.replace(/[-_]/g, " ")
 		.replace(/\b\w/g, (letter) => letter.toUpperCase());
 
+const sectionTitles: Record<string, string> = {
+	coleccionTheMolting: "Colección The Molting",
+	blueTears: "Blue Tears",
+	fundas: "Fundas",
+	otros: "Otros",
+};
+
+const formatStatus = (status: string) =>
+	status === "disponible" ? "Disponible" : status.charAt(0).toUpperCase() + status.slice(1);
+
 const normalize = (value = "") =>
 	value
 		.toLowerCase()
@@ -56,8 +66,8 @@ const tiendaData = (shopData as SiteData).tienda;
 
 const sections = Object.entries(tiendaData).map(
 	([folder, products]) => ({
-		id: normalize(formatTitle(folder)).replace(/\s+/g, "-"),
-		title: formatTitle(folder),
+		id: normalize(sectionTitles[folder] ?? formatTitle(folder)).replace(/\s+/g, "-"),
+		title: sectionTitles[folder] ?? formatTitle(folder),
 		products: [...products]
 			.sort((a, b) => (a.orden ?? 0) - (b.orden ?? 0))
 			.map((product) => {
@@ -69,7 +79,7 @@ const sections = Object.entries(tiendaData).map(
 					product.colores?.length ? `Colores: ${product.colores.join(", ")}` : undefined,
 					product.piezaUnica ? "Pieza única 1/1" : undefined,
 					product.stock !== undefined ? `Stock: ${product.stock}` : undefined,
-					product.estado ? `Estado: ${product.estado}` : undefined,
+					product.estado ? `Estado: ${formatStatus(product.estado)}` : undefined,
 				].filter(Boolean).join(" | ");
 
 				return {
@@ -84,17 +94,13 @@ const sections = Object.entries(tiendaData).map(
 	}),
 );
 
-const navLinks = sections.map((section) => ({
-	href: `#${section.id}`,
-	label: section.title,
-}));
 ---
 
 
 <Layout
 	title="Tienda | PATO Studio"
 	description="Tienda de PATO Studio con anillos, brazaletes, collares y pendientes.">
-	<ShopCategoryNav links={navLinks} />
+	<ShopCategoryNav />
 	<div
 		class="shop-page"
 		aria-label="Tienda PATO Studio">

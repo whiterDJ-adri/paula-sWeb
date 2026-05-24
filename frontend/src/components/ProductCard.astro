@@ -38,7 +38,7 @@ const imageUrl = typeof image === "string"
   data-desc={desc}
   data-details={details}
 >
-  <button type="button" aria-label={`Ver detalle de ${title}`}>
+  <button type="button" aria-label={`Ver pieza ${title}`}>
     <span class="image-wrap">
       {image && !placeholder ? (
         <Image src={image} alt={imageAlt} width={320} height={327} loading="lazy" decoding="async" inferSize />
@@ -51,7 +51,7 @@ const imageUrl = typeof image === "string"
       <strong>{title}</strong>
       <span class="meta">
         {price && <span>{price}</span>}
-        <span>{placeholder ? "Próximamente" : "Ver detalle"}</span>
+        <span>{placeholder ? "Próximamente" : "Ver pieza"}</span>
       </span>
     </span>
   </button>
