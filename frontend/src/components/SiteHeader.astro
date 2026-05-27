@@ -35,7 +35,7 @@ const isActive = (href: string) => {
 
 <header class="site-header">
   <a class="brand" href={withBase("/")} aria-label="PATO, ir al inicio">
-    <img src={logoUrl.src} alt="PATO" width="96" height="68" decoding="async" />
+    <img src={logoUrl.src} alt="PATO" width="176" height="125" decoding="async" />
   </a>
 
   <nav class="nav" aria-label="Navegación principal">
@@ -56,20 +56,19 @@ const isActive = (href: string) => {
     position: sticky;
     top: 0;
     z-index: 20;
-    display: flex;
+    display: grid;
+    grid-template-columns: clamp(8rem, 13vw, 11rem) 1fr clamp(8rem, 13vw, 11rem);
     min-height: var(--header-height);
     align-items: center;
-    gap: clamp(2rem, 6vw, 5.25rem);
     border-bottom: 1px solid var(--color-brand);
     background: rgb(255 255 255 / 92%);
-    padding: 0.625rem clamp(1.25rem, 4.5vw, 4rem) 0;
+    padding: 0.625rem clamp(1.25rem, 4.5vw, 4rem);
     backdrop-filter: blur(14px);
   }
 
   .brand {
     display: block;
-    width: clamp(4.75rem, 7vw, 6rem);
-    min-width: 4.75rem;
+    width: clamp(7.5rem, 11vw, 11rem);
     color: var(--color-ink);
     text-decoration: none;
   }
@@ -81,7 +80,7 @@ const isActive = (href: string) => {
   }
 
   .nav {
-    flex: 1;
+    grid-column: 2;
   }
 
   .nav ul {
@@ -120,18 +119,21 @@ const isActive = (href: string) => {
   @media (max-width: 47.99rem) {
     .site-header {
       position: relative;
-      align-items: flex-start;
-      gap: 1rem;
+      grid-template-columns: 1fr;
+      gap: 0.75rem;
       padding: 0.75rem 1rem 1rem;
     }
 
     .brand {
-      width: 4.75rem;
-      min-width: 4.75rem;
+      width: 7.5rem;
+    }
+
+    .nav {
+      grid-column: 1;
     }
 
     .nav ul {
-      justify-content: flex-start;
+      justify-content: center;
       gap: 0.25rem 1rem;
     }
 
