@@ -1,0 +1,99 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+const withBase = (href: string) => `${basePath}${href}`;
+---
+
+<Layout
+  title="Gracias | PATO Studio"
+  description="Tu mensaje ha sido enviado a PATO Studio.">
+  <section class="thanks-page" aria-labelledby="thanks-title">
+    <p class="eyebrow">MENSAJE ENVIADO</p>
+    <h1 id="thanks-title">Gracias por escribirnos</h1>
+    <p class="copy">
+      Hemos recibido tu mensaje. Te responderemos lo antes posible con el siguiente paso.
+    </p>
+    <div class="actions">
+      <a class="primary" href={withBase("/")}>Volver al inicio</a>
+      <a href={withBase("/tienda")}>Ver la tienda</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .thanks-page {
+    display: grid;
+    justify-items: center;
+    gap: 1.5rem;
+    min-height: clamp(28rem, 65vh, 43rem);
+    max-width: 50rem;
+    margin-inline: auto;
+    padding: clamp(5rem, 10vw, 9rem) 1rem;
+    text-align: center;
+  }
+
+  .eyebrow {
+    margin: 0;
+    color: var(--color-brand);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  h1 {
+    margin: 0;
+    color: var(--color-ink);
+    font-family: var(--font-heading);
+    font-size: clamp(3rem, 7vw, 5.75rem);
+    font-weight: 200;
+    line-height: 0.95;
+  }
+
+  .copy {
+    max-width: 34rem;
+    margin: 0.5rem 0 1rem;
+    color: #474747;
+    font-family: var(--font-body);
+    font-size: clamp(1rem, 1.4vw, 1.25rem);
+    line-height: 1.4;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+  }
+
+  a {
+    display: inline-flex;
+    min-height: 3.25rem;
+    align-items: center;
+    border: 1px solid var(--color-brand);
+    color: var(--color-brand);
+    font-family: var(--font-body);
+    font-weight: 700;
+    padding: 0.875rem 1.5rem;
+    text-decoration: none;
+    transition: background var(--transition-ui), color var(--transition-ui);
+  }
+
+  a:hover,
+  a:focus-visible,
+  .primary {
+    background: var(--color-brand);
+    color: var(--color-cream);
+  }
+
+  .primary:hover,
+  .primary:focus-visible {
+    background: var(--color-canvas);
+    color: var(--color-brand);
+  }
+
+  a:focus-visible {
+    outline: none;
+    box-shadow: var(--shadow-focus);
+  }
+</style>

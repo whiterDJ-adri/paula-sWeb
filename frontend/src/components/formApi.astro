@@ -8,6 +8,9 @@ const {
   accessKey = import.meta.env.PUBLIC_WEB3FORMS_ACCESS_KEY,
   subject = "Nuevo mensaje desde PATO Studio",
 } = Astro.props;
+
+const basePath = import.meta.env.BASE_URL.replace(/\/$/, "");
+const successPath = `${basePath}/gracias`;
 ---
 
 <form
@@ -15,6 +18,7 @@ const {
   method="POST"
   id="contact-form"
   class="contact-form"
+  data-success-path={successPath}
   data-astro-reload
   novalidate
 >
@@ -76,7 +80,7 @@ const {
 
       form.reset();
       form.classList.remove("was-validated");
-      result && (result.textContent = "Mensaje enviado. Te responderemos lo antes posible.");
+      window.location.assign(form.dataset.successPath ?? "/gracias");
     } catch {
       result && (result.textContent = "No se pudo enviar. Inténtalo de nuevo en unos minutos.");
     } finally {
