@@ -4,50 +4,44 @@ import EditorialGallery from "../components/EditorialGallery.astro";
 import HeroSection from "../components/HeroSection.astro";
 import HomeImageRow from "../components/HomeImageRow.astro";
 import HomeStory from "../components/HomeStory.astro";
-import siteData from "../assets/data.json";
-import type { ImageMetadata } from "astro";
 
-interface JsonAsset {
-	nombre?: string;
-	altFoto?: string;
-	urlFoto?: string;
-	orden?: number;
-}
+import heroImage from "../assets/images/home/hero.webp";
+import theMoltingOne from "../assets/images/home/the-molting/campaign-01.webp";
+import theMoltingSeven from "../assets/images/home/the-molting/7.webp";
+import theMoltingEight from "../assets/images/home/the-molting/8.webp";
+import previousCenter from "../assets/images/anteriores/serie-01/ari-en-medio-foto.webp";
+import previousLeft from "../assets/images/anteriores/serie-01/izquierda.mp4";
+import previousRight from "../assets/images/anteriores/serie-01/derecha.mp4";
+import previousTwoOne from "../assets/images/anteriores/serie-02/mapo-01.webp";
+import previousTwoTwo from "../assets/images/anteriores/serie-02/mapo-02.webp";
+import previousTwoThree from "../assets/images/anteriores/serie-02/mapo-03.webp";
 
-interface SiteData {
-	home: Record<string, JsonAsset[]>;
-}
-
-const images = import.meta.glob<{ default: ImageMetadata }>(
-	"../assets/**/*.{png,jpg,jpeg,webp}",
-	{ eager: true },
-);
-
-const toItems = (assets: JsonAsset[] = []) =>
-	[...assets]
-		.sort((a, b) => (a.orden ?? 0) - (b.orden ?? 0))
-		.map((asset) => {
-			const imagePath = asset.urlFoto?.replace("./", "../assets/");
-
-			return {
-				image: imagePath ? images[imagePath]?.default : undefined,
-				alt: asset.altFoto ?? asset.nombre ?? "Imagen PATO Studio",
-			};
-		})
-		.filter((item) => item.image);
-
-const homeData = (siteData as SiteData).home;
-const rowItems = toItems(homeData.carrousel);
-const featureItems = toItems(homeData.theMolting).slice(0, 3);
-const [heroItem, ...homeItems] = toItems(homeData.home);
+// Ready to receive real carousel imagery without displaying empty placeholders.
+const carouselItems = [];
+const theMoltingItems = [
+  { image: theMoltingOne, alt: "The Molting, modelo con anillos junto a unas uvas" },
+  { image: theMoltingSeven, alt: "The Molting, dos modelos con helados y joyeria" },
+  { image: theMoltingEight, alt: "The Molting, modelo con joyeria y fondo exterior" },
+];
+const previousItems = [
+  { video: previousLeft, alt: "Anteriores, video izquierdo" },
+  { image: previousCenter, alt: "Anteriores, retrato central de Ari" },
+  { video: previousRight, alt: "Anteriores, video derecho" },
+];
+const previousTwoItems = [
+  { image: previousTwoOne, alt: "Anteriores 2, editorial uno" },
+  { image: previousTwoTwo, alt: "Anteriores 2, editorial dos" },
+  { image: previousTwoThree, alt: "Anteriores 2, editorial tres" },
+];
 ---
 
 <Layout title="PATO Studio">
-  <HeroSection image={heroItem?.image} alt={heroItem?.alt} />
-  <HomeImageRow items={rowItems} />
+  <HeroSection image={heroImage} alt="Manos con joyeria PATO sobre fondo azul" eyebrow="" />
+  {carouselItems.length > 0 && <HomeImageRow items={carouselItems} />}
   <div class="home-sections">
-    <EditorialGallery items={featureItems} />
-    <EditorialGallery title="ANTERIORES" subtitle="" variant="archive" items={homeItems} />
+    <EditorialGallery id="the-molting-title" title="THE MOLTING" subtitle="" items={theMoltingItems} />
+    <EditorialGallery id="anteriores-primary-title" title="ANTERIORES" subtitle="" variant="archive" items={previousItems} />
+    <EditorialGallery id="anteriores-secondary-title" title="ANTERIORES" subtitle="" variant="archive" items={previousTwoItems} />
   </div>
   <HomeStory />
 </Layout>
@@ -55,7 +49,7 @@ const [heroItem, ...homeItems] = toItems(homeData.home);
 <style>
   .home-sections {
     display: grid;
-    gap: clamp(7.5rem, 10vw, 11rem);
-    margin-block: clamp(4rem, 6vw, 6.5rem) clamp(7rem, 9vw, 10rem);
+    gap: clamp(4.5rem, 8vw, 8rem);
+    margin-block: clamp(4rem, 6vw, 6.5rem) clamp(5rem, 8vw, 8rem);
   }
 </style>

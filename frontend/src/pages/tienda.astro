@@ -3,107 +3,83 @@ import Layout from "../layouts/Layout.astro";
 import ProductGrid from "../components/ProductGrid.astro";
 import ProductModal from "../components/ProductModal.astro";
 import ShopCategoryNav from "../components/ShopCategoryNav.astro";
-import shopData from "../assets/data.json";
+import siteData from "../assets/data.json";
 import type { ImageMetadata } from "astro";
-
-interface Product {
-	nombre?: string;
-	precio?: number | string;
-	imagen?: ImageMetadata | string;
-	imageAlt?: string;
-	desc?: string;
-	details?: string;
-}
 
 interface JsonProduct {
 	nombre?: string;
 	descripcion?: string;
 	precio?: number | string;
-	urlFoto?: string;
-	altFoto?: string;
-	coleccion?: string;
-	categoria?: string;
-	materiales?: string[];
-	colores?: string[];
-	piezaUnica?: boolean;
-	stock?: number;
-	estado?: string;
-	orden?: number;
+	url?: string;
+	talla?: string;
+	tamano?: string;
+	modelo?: string;
+}
+
+interface ProductTree {
+	ANILLOS: Record<string, JsonProduct[]>;
+	BRAZALETES: JsonProduct[];
+	COLLARES: Record<string, JsonProduct[]>;
+	OTROS: Record<string, JsonProduct[]>;
 }
 
 interface SiteData {
-	tienda: Record<string, JsonProduct[]>;
+	TIENDA: {
+		PRODUCTO: ProductTree;
+	};
 }
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
-	"../assets/**/*.{png,jpg,jpeg,webp}",
+	"../assets/images/**/*.{png,jpg,jpeg,webp}",
 	{ eager: true },
 );
 
-const formatTitle = (folder: string) =>
-	folder
-		.replace(/([a-z])([A-Z])/g, "$1 $2")
-		.replace(/[-_]/g, " ")
-		.replace(/\b\w/g, (letter) => letter.toUpperCase());
+const toProducts = (products: JsonProduct[]) =>
+	products.map((product) => {
+		const imagePath = product.url ? `../assets/images/${product.url}` : undefined;
 
-const sectionTitles: Record<string, string> = {
-	coleccionTheMolting: "Colección The Molting",
-	blueTears: "Blue Tears",
-	fundas: "Fundas",
-	otros: "Otros",
-};
+		return {
+			nombre: product.nombre,
+			precio: product.precio,
+			desc: product.descripcion,
+			imagen: imagePath ? images[imagePath]?.default : undefined,
+			imageAlt: product.nombre,
+			talla: product.talla,
+			tamano: product.tamano,
+			modelo: product.modelo,
+		};
+	});
 
-const formatStatus = (status: string) =>
-	status === "disponible" ? "Disponible" : status.charAt(0).toUpperCase() + status.slice(1);
-
-const normalize = (value = "") =>
-	value
-		.toLowerCase()
-		.normalize("NFD")
-		.replace(/\p{Diacritic}/gu, "");
-
-const tiendaData = (shopData as SiteData).tienda;
-
-const sections = Object.entries(tiendaData).map(
-	([folder, products]) => ({
-		id: normalize(sectionTitles[folder] ?? formatTitle(folder)).replace(/\s+/g, "-"),
-		title: sectionTitles[folder] ?? formatTitle(folder),
-		products: [...products]
-			.sort((a, b) => (a.orden ?? 0) - (b.orden ?? 0))
-			.map((product) => {
-				const imagePath = product.urlFoto?.replace("./", "../assets/");
-				const details = [
-					product.coleccion ? `Colección: ${product.coleccion}` : undefined,
-					product.categoria ? `Categoría: ${product.categoria}` : undefined,
-					product.materiales?.length ? `Materiales: ${product.materiales.join(", ")}` : undefined,
-					product.colores?.length ? `Colores: ${product.colores.join(", ")}` : undefined,
-					product.piezaUnica ? "Pieza única 1/1" : undefined,
-					product.stock !== undefined ? `Stock: ${product.stock}` : undefined,
-					product.estado ? `Estado: ${formatStatus(product.estado)}` : undefined,
-				].filter(Boolean).join(" | ");
-
-				return {
-					nombre: product.nombre,
-					precio: product.precio,
-					desc: product.descripcion,
-					imagen: imagePath ? images[imagePath]?.default : undefined,
-					imageAlt: product.altFoto ?? product.nombre,
-					details,
-				};
-			}),
-	}),
-);
-
+const products = (siteData as SiteData).TIENDA.PRODUCTO;
+const sections = [
+	{
+		id: "anillos",
+		title: "Anillos",
+		products: toProducts(Object.values(products.ANILLOS).flat()),
+	},
+	{
+		id: "brazaletes",
+		title: "Brazaletes",
+		products: toProducts(products.BRAZALETES),
+	},
+	{
+		id: "collares",
+		title: "Collares",
+		products: toProducts(Object.values(products.COLLARES).flat()),
+	},
+	...Object.entries(products.OTROS).map(([title, items]) => ({
+		id: title.toLowerCase(),
+		title,
+		products: toProducts(items),
+	})),
+];
 ---
-
 
 <Layout
 	title="Tienda | PATO Studio"
 	description="Tienda de PATO Studio con piezas únicas, colecciones limitadas, fundas y objetos especiales.">
 	<ShopCategoryNav />
-	<div
-		class="shop-page"
-		aria-label="Tienda PATO Studio">
+	<div class="shop-page" aria-label="Tienda PATO Studio">
 		{
 			sections.map((section, index) => (
 				<ProductGrid

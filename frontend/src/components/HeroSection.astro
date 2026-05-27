@@ -16,7 +16,7 @@ const {
 ---
 
 <section class="hero" aria-labelledby="hero-title">
-  <p class="eyebrow">{eyebrow}</p>
+  {eyebrow && <p class="eyebrow">{eyebrow}</p>}
   <div class="media">
     {image ? (
       <Image src={image} alt={alt} width={1600} height={960} priority inferSize />

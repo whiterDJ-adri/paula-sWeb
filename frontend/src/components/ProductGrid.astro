@@ -8,9 +8,9 @@ interface Product {
   imagen?: ImageMetadata | string;
   imageAlt?: string;
   desc?: string;
-  details?: string;
-  categoria?: string;
-  category?: string;
+  talla?: string;
+  tamano?: string;
+  modelo?: string;
 }
 
 interface Props {
@@ -50,7 +50,9 @@ const items = products.length > 0
         image={producto.imagen}
         imageAlt={producto.imageAlt ?? producto.nombre ?? "Producto PATO"}
         desc={producto.desc ?? ""}
-        details={producto.details ?? ""}
+        talla={producto.talla}
+        tamano={producto.tamano}
+        modelo={producto.modelo}
         placeholder={products.length === 0}
         priority={index === 0 && priorityCount > 0}
         eager={index < priorityCount}

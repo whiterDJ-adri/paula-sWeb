@@ -1,6 +1,6 @@
 ---
 // ProductModal: ventana emergente con el detalle del producto.
-// Se activa desde card.astro al hacer click.
+// Se activa desde ProductCard.astro al hacer click.
 ---
 
 <!-- Overlay del modal, oculto por defecto -->
@@ -15,7 +15,7 @@
         <h2 id="modal-title"></h2>
         <p id="modal-price" class="modal-price"></p>
         <p id="modal-desc" class="modal-desc"></p>
-        <p id="modal-details" class="modal-details"></p>
+        <p id="modal-attributes" class="modal-details"></p>
       </div>
     </div>
   </div>
@@ -125,6 +125,10 @@
     padding-top: 1rem;
   }
 
+  .modal-details:empty {
+    display: none;
+  }
+
   @media (max-width: 600px) {
     .modal-inner {
       grid-template-columns: 1fr;
@@ -155,14 +159,19 @@
 
   // Escucha el evento personalizado lanzado desde las cards
   document.addEventListener('open-product-modal', (e: Event) => {
-    const { title, price, image, imageAlt, desc, details } = (e as CustomEvent).detail;
+    const { title, price, image, imageAlt, desc, talla, tamano, modelo } = (e as CustomEvent).detail;
+    const attributes = [
+      talla ? `Talla: ${talla}` : "",
+      tamano ? `Tamaño: ${tamano}` : "",
+      modelo ? `Modelo: ${modelo}` : "",
+    ].filter(Boolean).join(" | ");
 
     (document.getElementById('modal-img') as HTMLImageElement).src = image ?? '';
     (document.getElementById('modal-img') as HTMLImageElement).alt = imageAlt ?? '';
     (document.getElementById('modal-title') as HTMLElement).textContent = title ?? '';
     (document.getElementById('modal-price') as HTMLElement).textContent = price ?? '';
     (document.getElementById('modal-desc') as HTMLElement).textContent = desc ?? '';
-    (document.getElementById('modal-details') as HTMLElement).textContent = details ?? '';
+    (document.getElementById('modal-attributes') as HTMLElement).textContent = attributes;
 
     overlay.classList.add('open');
     overlay.setAttribute('aria-hidden', 'false');

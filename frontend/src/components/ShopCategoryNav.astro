@@ -12,19 +12,19 @@ interface Props {
 
 const {
   topLinks = [
-    { href: "#coleccion-the-molting", label: "Accesorios" },
-    { href: "#otros", label: "Otros" },
+    { href: "#anillos", label: "Accesorios" },
+    { href: "#bandejas", label: "Otros" },
   ],
   primaryLinks = [
-    { href: "#coleccion-the-molting", label: "Anillos" },
-    { href: "#coleccion-the-molting", label: "Collares" },
-    { href: "#coleccion-the-molting", label: "Brazaletes" },
-    { href: "#coleccion-the-molting", label: "Pendientes" },
+    { href: "#anillos", label: "Anillos" },
+    { href: "#collares", label: "Collares" },
+    { href: "#brazaletes", label: "Brazaletes" },
+    { href: "#anillos", label: "Pendientes" },
   ],
   secondaryLinks = [
     { href: "#fundas", label: "Fundas" },
-    { href: "#otros", label: "Ceniceros" },
-    { href: "#otros", label: "Bandejas" },
+    { href: "#ceniceros", label: "Ceniceros" },
+    { href: "#bandejas", label: "Bandejas" },
   ],
 } = Astro.props;
 ---
@@ -71,7 +71,7 @@ const {
     justify-content: center;
     border-block: 1px solid var(--color-line);
     background: var(--color-canvas);
-    padding-block: clamp(1rem, 2vw, 1.375rem);
+    padding-block: clamp(0.375rem, 1vw, 0.625rem);
   }
 
   .shop-nav__inner {
@@ -156,7 +156,8 @@ const {
       min-height: auto;
       justify-content: flex-start;
       overflow-x: auto;
-      padding: 1rem;
+      padding-block: 0.375rem;
+      padding-inline: 1rem;
     }
 
     .shop-nav__inner {

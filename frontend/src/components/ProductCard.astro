@@ -8,7 +8,9 @@ interface Props {
   image?: ImageMetadata | string;
   imageAlt?: string;
   desc?: string;
-  details?: string;
+  talla?: string;
+  tamano?: string;
+  modelo?: string;
   placeholder?: boolean;
   priority?: boolean;
   eager?: boolean;
@@ -20,7 +22,9 @@ const {
   image,
   imageAlt = title,
   desc = "",
-  details = "",
+  talla = "",
+  tamano = "",
+  modelo = "",
   placeholder = false,
   priority = false,
   eager = false,
@@ -31,6 +35,13 @@ const imageUrl = typeof image === "string"
   : image
     ? (await getImage({ src: image, width: 800, format: "webp" })).src
     : undefined;
+const attribute = talla
+  ? `Talla: ${talla}`
+  : tamano
+    ? `Tamaño: ${tamano}`
+    : modelo
+      ? `Modelo: ${modelo}`
+      : "";
 ---
 
 <article
@@ -40,7 +51,9 @@ const imageUrl = typeof image === "string"
   data-image={imageUrl ?? ""}
   data-image-alt={imageAlt}
   data-desc={desc}
-  data-details={details}
+  data-talla={talla}
+  data-tamano={tamano}
+  data-modelo={modelo}
 >
   <button type="button" aria-label={`Ver pieza ${title}`}>
     <span class="image-wrap">
@@ -62,6 +75,7 @@ const imageUrl = typeof image === "string"
 
     <span class="content">
       <strong>{title}</strong>
+      {attribute && <small>{attribute}</small>}
       <span class="meta">
         {price && <span>{price}</span>}
         <span>{placeholder ? "Próximamente" : "Ver pieza"}</span>
@@ -84,7 +98,9 @@ const imageUrl = typeof image === "string"
           image: card.dataset.image,
           imageAlt: card.dataset.imageAlt,
           desc: card.dataset.desc,
-          details: card.dataset.details,
+          talla: card.dataset.talla,
+          tamano: card.dataset.tamano,
+          modelo: card.dataset.modelo,
         },
       }));
     });
@@ -163,5 +179,11 @@ const imageUrl = typeof image === "string"
     color: var(--color-brand);
     font-family: var(--font-body);
     font-size: 1rem;
+  }
+
+  small {
+    color: var(--color-muted);
+    font-family: var(--font-body);
+    font-size: 0.875rem;
   }
 </style>

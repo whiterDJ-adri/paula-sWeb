@@ -1,59 +1,38 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import ProductGrid from "../components/ProductGrid.astro";
-import ProductModal from "../components/ProductModal.astro";
-import shopData from "../assets/data.json";
+import EditorialGallery from "../components/EditorialGallery.astro";
+import siteData from "../assets/data.json";
 import type { ImageMetadata } from "astro";
 
-interface JsonProduct {
+interface JsonAsset {
 	nombre?: string;
-	descripcion?: string;
-	precio?: number | string;
-	urlFoto?: string;
-	altFoto?: string;
-	coleccion?: string;
-	categoria?: string;
-	piezaUnica?: boolean;
-	stock?: number;
-	estado?: string;
-	orden?: number;
+	url?: string;
 }
 
 interface SiteData {
-	tienda: {
-		otros?: JsonProduct[];
+	"PATO ESPECIALES": {
+		"LUNA KI MICRO": Record<string, JsonAsset[]>;
 	};
 }
 
 const images = import.meta.glob<{ default: ImageMetadata }>(
-	"../assets/**/*.{png,jpg,jpeg,webp}",
+	"../assets/images/**/*.{png,jpg,jpeg,webp}",
 	{ eager: true },
 );
 
-const formatStatus = (status: string) =>
-	status === "disponible" ? "Disponible" : status.charAt(0).toUpperCase() + status.slice(1);
+const toItems = (assets: JsonAsset[] = []) =>
+	assets
+		.map((asset) => {
+			const imagePath = asset.url ? `../assets/images/${asset.url}` : undefined;
 
-const products = [...((shopData as SiteData).tienda.otros ?? [])]
-	.sort((a, b) => (a.orden ?? 0) - (b.orden ?? 0))
-	.map((product) => {
-		const imagePath = product.urlFoto?.replace("./", "../assets/");
-		const details = [
-			product.coleccion ? `Colección: ${product.coleccion}` : undefined,
-			product.categoria ? `Categoría: ${product.categoria}` : undefined,
-			product.piezaUnica ? "Pieza única 1/1" : undefined,
-			product.stock !== undefined ? `Stock: ${product.stock}` : undefined,
-			product.estado ? `Estado: ${formatStatus(product.estado)}` : undefined,
-		].filter(Boolean).join(" | ");
+			return {
+				image: imagePath ? images[imagePath]?.default : undefined,
+				alt: asset.nombre ?? "Proyecto PATO Especiales",
+			};
+		})
+		.filter((item) => item.image);
 
-		return {
-			nombre: product.nombre,
-			precio: product.precio,
-			desc: product.descripcion,
-			imagen: imagePath ? images[imagePath]?.default : undefined,
-			imageAlt: product.altFoto ?? product.nombre,
-			details,
-		};
-	});
+const specialProjects = (siteData as SiteData)["PATO ESPECIALES"]["LUNA KI MICRO"];
 ---
 
 <Layout
@@ -64,26 +43,19 @@ const products = [...((shopData as SiteData).tienda.otros ?? [])]
 		<h1 id="specials-title">PATO Especiales</h1>
 		<div class="copy">
 			<p>
-				Piezas fuera de colección: bandejas, ceniceros y objetos intervenidos
-				que nacen del mismo universo del estudio.
+				Proyectos fuera de colección que nacen del mismo universo del estudio.
 			</p>
 			<p>
-				Cada objeto está disponible como pieza única o en series muy limitadas.
+				Luna Ki Micro reúne piezas e imágenes desarrolladas para proyectos y feria.
 			</p>
 		</div>
 	</section>
 
-	<div class="specials-products">
-		<ProductGrid
-			id="objetos-especiales"
-			title="Disponibles"
-			products={products}
-			emptyMessage="Próximamente habrá nuevas piezas especiales disponibles."
-			minItems={0}
-			priorityCount={3}
-		/>
+	<div class="specials-projects">
+		<EditorialGallery title="LUNA KI MICRO" subtitle="PROYECTO 1" items={toItems(specialProjects["PROYECTO 1"])} />
+		<EditorialGallery title="LUNA KI MICRO" subtitle="PROYECTO 2" items={toItems(specialProjects["PROYECTO 2"])} />
+		<EditorialGallery title="LUNA KI MICRO" subtitle="FERIA LQFB" items={toItems(specialProjects["FERIA LQFB"])} />
 	</div>
-	<ProductModal />
 </Layout>
 
 <style>
@@ -126,7 +98,9 @@ const products = [...((shopData as SiteData).tienda.otros ?? [])]
 		line-height: 1.4;
 	}
 
-	.specials-products {
-		padding-bottom: clamp(5rem, 9vw, 8rem);
+	.specials-projects {
+		display: grid;
+		gap: clamp(5rem, 8vw, 8rem);
+		padding: clamp(4rem, 7vw, 6rem) 0 clamp(6rem, 10vw, 10rem);
 	}
 </style>
