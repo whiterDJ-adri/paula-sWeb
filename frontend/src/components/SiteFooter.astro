@@ -13,7 +13,9 @@ const {
     { href: "/", label: "INICIO" },
     { href: "/#nosotros", label: "NOSOTROS" },
     { href: "/tienda", label: "TIENDA" },
+    { href: "/pato-especiales", label: "PATO ESPECIALES" },
     { href: "/contacto", label: "CONTACTO" },
+    { href: "https://www.instagram.com/", label: "INSTAGRAM" },
   ],
 } = Astro.props;
 
@@ -29,7 +31,13 @@ const withBase = (href: string) => {
     <ul>
       {links.map((link) => (
         <li>
-          <a href={withBase(link.href)}>{link.label}</a>
+          <a
+            href={withBase(link.href)}
+            target={link.href.startsWith("http") ? "_blank" : undefined}
+            rel={link.href.startsWith("http") ? "noreferrer" : undefined}
+          >
+            {link.label}
+          </a>
         </li>
       ))}
     </ul>
@@ -41,14 +49,20 @@ const withBase = (href: string) => {
     display: flex;
     min-height: 5.8125rem;
     align-items: center;
+    justify-content: center;
     background: var(--color-brand);
     padding: 1.25rem clamp(1.25rem, 7vw, 6.6875rem);
+  }
+
+  nav {
+    width: 100%;
   }
 
   ul {
     display: flex;
     flex-wrap: wrap;
-    gap: clamp(1rem, 9vw, 9.875rem);
+    justify-content: center;
+    gap: clamp(1rem, 5vw, 4.5rem);
     align-items: center;
     margin: 0;
     padding: 0;
