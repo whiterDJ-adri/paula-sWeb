@@ -30,33 +30,37 @@ const {
 ---
 
 <nav class="shop-nav" aria-label="Categorías de tienda">
-  <div class="shop-nav__inner">
-    <ul class="shop-nav__top">
-      {topLinks.map((link) => (
-        <li>
-          <a href={link.href}>{link.label}</a>
-        </li>
-      ))}
-    </ul>
+  <div class="shop-nav__layout">
+    <p class="shop-nav__filter">FILTER</p>
 
-    <div class="shop-nav__bottom">
-      <ul class="shop-nav__primary">
-        {primaryLinks.map((link, index) => (
-          <li>
-            <a class:list={[index === 0 && "is-featured"]} href={link.href}>{link.label}</a>
-          </li>
-        ))}
-      </ul>
-
-      <span class="shop-nav__divider" aria-hidden="true"></span>
-
-      <ul class="shop-nav__secondary">
-        {secondaryLinks.map((link) => (
+    <div class="shop-nav__inner">
+      <ul class="shop-nav__top">
+        {topLinks.map((link) => (
           <li>
             <a href={link.href}>{link.label}</a>
           </li>
         ))}
       </ul>
+
+      <div class="shop-nav__bottom">
+        <ul class="shop-nav__primary">
+          {primaryLinks.map((link) => (
+            <li>
+              <a href={link.href}>{link.label}</a>
+            </li>
+          ))}
+        </ul>
+
+        <span class="shop-nav__divider" aria-hidden="true"></span>
+
+        <ul class="shop-nav__secondary">
+          {secondaryLinks.map((link) => (
+            <li>
+              <a href={link.href}>{link.label}</a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   </div>
 </nav>
@@ -72,6 +76,21 @@ const {
     justify-content: center;
     border-block: 1px solid var(--color-line);
     background: var(--color-canvas);
+  }
+
+  .shop-nav__layout {
+    display: flex;
+    align-items: flex-start;
+    gap: clamp(2rem, 4vw, 4rem);
+  }
+
+  .shop-nav__filter {
+    margin: 0;
+    color: var(--color-ink);
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 200;
+    line-height: 1.4;
   }
 
   .shop-nav__inner {
@@ -116,9 +135,9 @@ const {
   }
 
   .shop-nav__divider {
-    width: 1.6875rem;
-    height: 1px;
-    margin-inline: 0.625rem 0.625rem;
+    width: 1px;
+    height: 1.5rem;
+    margin-inline: 0.625rem 1.125rem;
     background: var(--color-line);
   }
 
@@ -129,20 +148,14 @@ const {
     color: var(--color-ink);
     font-family: var(--font-heading);
     font-size: 1.25rem;
-    font-weight: 700;
+    font-weight: 200;
     line-height: 1.4;
     text-decoration: none;
     transition: color var(--transition-ui);
   }
 
-  .shop-nav__top li:first-child a,
-  .is-featured {
-    font-family: "PP Editorial New", var(--font-heading);
-    font-weight: 800;
-  }
-
-  .shop-nav__top li:first-child a {
-    font-weight: 200;
+  .shop-nav__bottom a {
+    font-style: italic;
   }
 
   a:hover,
@@ -168,6 +181,10 @@ const {
     .shop-nav__inner {
       min-width: 44.375rem;
       width: 44.375rem;
+    }
+
+    .shop-nav__layout {
+      min-width: max-content;
     }
   }
 </style>
