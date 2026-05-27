@@ -99,19 +99,20 @@ const sections = Object.entries(tiendaData).map(
 
 <Layout
 	title="Tienda | PATO Studio"
-	description="Tienda de PATO Studio con anillos, brazaletes, collares y pendientes.">
+	description="Tienda de PATO Studio con piezas únicas, colecciones limitadas, fundas y objetos especiales.">
 	<ShopCategoryNav />
 	<div
 		class="shop-page"
 		aria-label="Tienda PATO Studio">
 		{
-			sections.map((section) => (
+			sections.map((section, index) => (
 				<ProductGrid
 					id={section.id}
 					title={section.title}
 					products={section.products}
-					emptyMessage={`Piezas de ${section.title.toLowerCase()} pendientes de integrar.`}
+					emptyMessage={`Las piezas de ${section.title.toLowerCase()} estarán disponibles próximamente.`}
 					minItems={12}
+					priorityCount={index === 0 ? 4 : 0}
 				/>
 			))
 		}

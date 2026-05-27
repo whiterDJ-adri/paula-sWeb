@@ -19,6 +19,7 @@ interface Props {
   products?: Product[];
   emptyMessage?: string;
   minItems?: number;
+  priorityCount?: number;
 }
 
 const {
@@ -27,6 +28,7 @@ const {
   products = [],
   emptyMessage = "No hay productos disponibles ahora mismo.",
   minItems = 12,
+  priorityCount = 0,
 } = Astro.props;
 
 const items = products.length > 0
@@ -50,6 +52,8 @@ const items = products.length > 0
         desc={producto.desc ?? ""}
         details={producto.details ?? ""}
         placeholder={products.length === 0}
+        priority={index === 0 && priorityCount > 0}
+        eager={index < priorityCount}
       />
     ))}
   </div>
