@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://whiterDJ-adri.github.io/paula-sWeb/sitemap-index.xml
