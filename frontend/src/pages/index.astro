@@ -2,10 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import EditorialGallery from "../components/EditorialGallery.astro";
 import HeroSection from "../components/HeroSection.astro";
-import HomeImageRow from "../components/HomeImageRow.astro";
 import HomeStory from "../components/HomeStory.astro";
 
-import type { ImageMetadata } from "astro";
 import heroImage from "../assets/images/home/hero.webp";
 import theMoltingOne from "../assets/images/home/the-molting/campaign-01.webp";
 import theMoltingSeven from "../assets/images/home/the-molting/7.webp";
@@ -17,8 +15,6 @@ import previousTwoOne from "../assets/images/anteriores/serie-02/mapo-01.webp";
 import previousTwoTwo from "../assets/images/anteriores/serie-02/mapo-02.webp";
 import previousTwoThree from "../assets/images/anteriores/serie-02/mapo-03.webp";
 
-// Ready to receive real carousel imagery without displaying empty placeholders.
-const carouselItems: { image?: ImageMetadata | string; alt: string }[] = [];
 const theMoltingItems = [
   { image: theMoltingOne, alt: "The Molting, modelo con anillos junto a unas uvas" },
   { image: theMoltingSeven, alt: "The Molting, dos modelos con helados y joyeria" },
@@ -41,7 +37,6 @@ const previousTwoItems = [
   description="PATO Studio crea piezas y productos que nadan fuera de lo obvio. Joyería editorial en series limitadas."
 >
   <HeroSection image={heroImage} alt="Manos con joyeria PATO sobre fondo azul" eyebrow="" />
-  {carouselItems.length > 0 && <HomeImageRow items={carouselItems} />}
   <div class="home-sections">
     <EditorialGallery id="the-molting-title" title="THE MOLTING" subtitle="" items={theMoltingItems} />
     <EditorialGallery id="anteriores-primary-title" title="ANTERIORES" subtitle="" variant="archive" items={previousItems} />
